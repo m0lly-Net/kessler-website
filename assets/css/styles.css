@@ -1133,6 +1133,12 @@ body::before {
   font-size: 1.5rem;
 }
 
+/* Couleur rose pour tous les <strong> à l'intérieur de .modal-bio */
+.modal-bio strong {
+  color: #5cbe00;      /* rose vif — adapte la teinte si besoin */
+  font-weight: 700;    /* conserve l'effet "gras" sémantique */
+}
+
 /* Cyber Form Styles */
 .cyber-form {
   display: flex;
