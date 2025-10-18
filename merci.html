@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Merci — Kessler Industries</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem;
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 50%, var(--primary-dark) 100%);
+      font-family: 'Rajdhani', sans-serif;
+      color: var(--text-primary);
+      text-align: center;
+    }
+
+    .thank-you-container {
+      max-width: 600px;
+      width: 100%;
+      background: rgba(10, 10, 10, 0.85);
+      border: 2px solid var(--cyber-cyan);
+      border-radius: 16px;
+      padding: 3rem 2rem;
+      box-shadow: 0 0 40px rgba(0, 212, 255, 0.3);
+      backdrop-filter: blur(10px);
+    }
+
+    .thank-you-title {
+      font-family: 'Orbitron', monospace;
+      font-size: 2.5rem;
+      color: var(--cyber-cyan);
+      margin-bottom: 1.5rem;
+      text-shadow: 0 0 15px var(--cyber-cyan);
+      letter-spacing: 2px;
+    }
+
+    .thank-you-message {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .cyber-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      font-family: 'Orbitron', monospace;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(0, 212, 255, 0.1) 100%);
+      border: 2px solid var(--cyber-cyan);
+      color: var(--cyber-cyan);
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+    }
+
+    .cyber-btn:hover {
+      background: var(--cyber-cyan);
+      color: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
+    }
+  </style>
+</head>
+<body>
+  <div class="thank-you-container">
+    <h1 class="thank-you-title glitch" data-text="CONFIRMATION">CONFIRMATION</h1>
+    <p class="thank-you-message">
+      «Votre message a bien été envoyé. Notre équipe le traitera dans les plus brefs délais.»
+    </p>
+    <a href="/" class="cyber-btn">
+      <i class="fas fa-arrow-left"></i> RETOUR À L'ACCUEIL
+    </a>
+  </div>
+</body>
+</html>
