@@ -710,6 +710,173 @@ body::before {
   /* Allow iframe to use its defined width and height attributes */
 }
 
+/* Contact Cards */
+.contact-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--border-cyber);
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 212, 255, 0.2);
+  border-color: var(--cyber-cyan);
+}
+
+.contact-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  position: relative;
+  border: 3px solid;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.contact-card:hover .contact-avatar {
+  transform: scale(1.1);
+}
+
+.cyan-avatar {
+  background: rgba(0, 212, 255, 0.15);
+  border-color: var(--cyber-cyan);
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+}
+
+.red-avatar {
+  background: rgba(255, 0, 64, 0.15);
+  border-color: var(--cyber-red);
+  box-shadow: 0 0 20px rgba(255, 0, 64, 0.4);
+}
+
+.yellow-avatar {
+  background: rgba(255, 204, 0, 0.15);
+  border-color: var(--cyber-yellow);
+  box-shadow: 0 0 20px rgba(255, 204, 0, 0.4);
+}
+
+.green-avatar {
+  background: rgba(0, 255, 136, 0.15);
+  border-color: var(--neon-green);
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+}
+
+.avatar-initials {
+  font-family: 'Orbitron', monospace;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-shadow: 0 0 10px currentColor;
+}
+
+.cyan-avatar .avatar-initials {
+  color: var(--cyber-cyan);
+}
+
+.red-avatar .avatar-initials {
+  color: var(--cyber-red);
+}
+
+.yellow-avatar .avatar-initials {
+  color: var(--cyber-yellow);
+}
+
+.green-avatar .avatar-initials {
+  color: var(--neon-green);
+}
+
+.contact-info {
+  width: 100%;
+}
+
+.contact-name {
+  font-family: 'Orbitron', monospace;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+
+.contact-title {
+  color: var(--cyber-cyan);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.contact-details {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.contact-details p {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  word-break: break-all;
+}
+
+.contact-details p:last-child {
+  margin-bottom: 0;
+}
+
+.contact-details i {
+  color: var(--cyber-cyan);
+  margin-right: 0.5rem;
+  width: 16px;
+  flex-shrink: 0;
+}
+
+.global-contact-box {
+  background: var(--glass-bg);
+  border: 1px solid var(--border-cyber);
+  border-radius: 12px;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.contact-item {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.contact-item i {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.contact-item span {
+  display: block;
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
@@ -726,4 +893,449 @@ body::before {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--cyber-red);
+}
+
+
+/* ===== CONTACT MODALS ===== */
+
+/* Modal Container */
+.contact-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.contact-modal.active {
+  display: flex;
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: -1;
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(10, 10, 10, 0.95) 100%);
+  border: 2px solid var(--cyber-cyan);
+  border-radius: 16px;
+  box-shadow: 
+    0 0 30px rgba(0, 212, 255, 0.3),
+    0 0 60px rgba(0, 212, 255, 0.2),
+    inset 0 0 60px rgba(0, 212, 255, 0.05);
+  backdrop-filter: blur(20px);
+  overflow: hidden;
+  animation: modalSlideUp 0.4s ease-out;
+}
+
+@keyframes modalSlideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Modal Close Button */
+/* .modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 0, 64, 0.2);
+  border: 2px solid var(--cyber-red);
+  color: var(--cyber-red);
+  font-size: 2rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  line-height: 1;
+  z-index: 10;
+  box-shadow: 0 0 15px rgba(255, 0, 64, 0.3);
+} */
+
+.modal-close:hover {
+  background: var(--cyber-red);
+  color: var(--primary-dark);
+  transform: rotate(90deg) scale(1.1);
+  box-shadow: 0 0 30px rgba(255, 0, 64, 0.6);
+}
+
+/* Modal Header */
+.modal-header {
+  text-align: center;
+  padding: 3rem 2rem 2rem;
+  border-bottom: 1px solid var(--border-cyber);
+  background: linear-gradient(180deg, rgba(0, 212, 255, 0.05) 0%, transparent 100%);
+}
+
+.modal-avatar {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 4px solid;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.modal-avatar::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background: inherit;
+  opacity: 0.3;
+  filter: blur(10px);
+  z-index: -1;
+}
+
+.modal-avatar .avatar-initials {
+  font-size: 2.5rem;
+  font-weight: 900;
+  text-shadow: 0 0 20px currentColor;
+}
+
+.modal-name {
+  font-family: 'Orbitron', monospace;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 15px var(--cyber-cyan);
+  letter-spacing: 2px;
+}
+
+.modal-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.1rem;
+  color: var(--cyber-cyan);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+/* Modal Body */
+.modal-body {
+  padding: 2rem;
+  overflow-y: auto;
+  max-height: calc(90vh - 200px);
+}
+
+.modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+  background: var(--cyber-cyan);
+  border-radius: 3px;
+}
+
+/* Modal Bio Section */
+.modal-bio {
+  margin-bottom: 2.5rem;
+  padding: 1.5rem;
+  background: rgba(0, 212, 255, 0.03);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 12px;
+}
+
+.modal-bio h3 {
+  font-family: 'Orbitron', monospace;
+  font-size: 1.3rem;
+  color: var(--cyber-cyan);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  text-shadow: 0 0 10px var(--cyber-cyan);
+  letter-spacing: 1px;
+}
+
+.modal-bio h3 i {
+  font-size: 1.5rem;
+}
+
+.modal-bio p {
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 1.2rem;
+  font-size: 1.05rem;
+  text-align: justify;
+}
+
+.modal-bio p:last-child {
+  margin-bottom: 0;
+}
+
+/* Modal Contact Form */
+.modal-contact-form {
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-cyber);
+  border-radius: 12px;
+}
+
+.modal-contact-form h3 {
+  font-family: 'Orbitron', monospace;
+  font-size: 1.3rem;
+  color: var(--cyber-cyan);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  text-shadow: 0 0 10px var(--cyber-cyan);
+  letter-spacing: 1px;
+}
+
+.modal-contact-form h3 i {
+  font-size: 1.5rem;
+}
+
+/* Cyber Form Styles */
+.cyber-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+  background: rgba(0, 212, 255, 0.05);
+  border: 2px solid rgba(0, 212, 255, 0.3);
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  color: var(--text-primary);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--cyber-cyan);
+  box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+/* Cyber Button */
+.cyber-btn {
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(0, 212, 255, 0.1) 100%);
+  border: 2px solid var(--cyber-cyan);
+  color: var(--cyber-cyan);
+  font-family: 'Orbitron', monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+  margin-top: 0.5rem;
+}
+
+.cyber-btn:hover {
+  background: var(--cyber-cyan);
+  color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
+}
+
+.cyber-btn:active {
+  transform: translateY(0);
+}
+
+.cyber-btn i {
+  font-size: 1.2rem;
+}
+
+/* Contact Card Hover Effect for Clickability */
+.contact-card {
+  cursor: pointer;
+  user-select: none;
+}
+
+.contact-card .contact-avatar {
+  cursor: pointer;
+}
+
+/* Responsive Modal */
+@media screen and (max-width: 768px) {
+  .contact-modal {
+    padding: 1rem;
+  }
+  
+  .modal-content {
+    max-height: 95vh;
+    border-radius: 12px;
+  }
+  
+  .modal-header {
+    padding: 2rem 1.5rem 1.5rem;
+  }
+  
+  .modal-avatar {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .modal-avatar .avatar-initials {
+    font-size: 2rem;
+  }
+  
+  .modal-name {
+    font-size: 1.5rem;
+  }
+  
+  .modal-title {
+    font-size: 1rem;
+  }
+  
+  .modal-body {
+    padding: 1.5rem;
+    max-height: calc(95vh - 180px);
+  }
+  
+  .modal-bio,
+  .modal-contact-form {
+    padding: 1rem;
+  }
+  
+  .modal-bio h3,
+  .modal-contact-form h3 {
+    font-size: 1.1rem;
+  }
+  
+  .modal-close {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+  }
+}
+
+/* Success Message Animation */
+.success-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, rgba(0, 255, 136, 0.95) 0%, rgba(0, 212, 255, 0.95) 100%);
+  color: var(--primary-dark);
+  padding: 2rem 3rem;
+  border-radius: 12px;
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  font-size: 1.2rem;
+  z-index: 10000;
+  box-shadow: 0 0 40px rgba(0, 255, 136, 0.6);
+  animation: successPop 0.5s ease-out;
+  text-align: center;
+}
+
+@keyframes successPop {
+  0% {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+
+.contact-avatar {
+    /* Garde les styles existants pour le conteneur de l'avatar */
+    /* Par exemple, si tu avais un background-color, une taille fixe, etc. */
+    width: 80px; /* Exemple de taille */
+    height: 80px; /* Exemple de taille */
+    border-radius: 50%; /* Pour rendre l'avatar rond */
+    overflow: hidden; /* Pour que l'image ne dépasse pas le cercle */
+    display: flex; /* Pour centrer l'image si elle est plus petite */
+    justify-content: center;
+    align-items: center;
+}
+
+.avatar-image {
+    width: 100%; /* L'image prend toute la largeur du conteneur */
+    height: 100%; /* L'image prend toute la hauteur du conteneur */
+    object-fit: cover; /* Pour que l'image couvre bien le conteneur sans être déformée */
+    display: block; /* Pour éviter les espaces indésirables sous l'image */
 }
