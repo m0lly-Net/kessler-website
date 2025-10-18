@@ -317,7 +317,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const form = modal.querySelector('.cyber-form');
         if (form) {
             form.addEventListener('submit', function(e) {
-                e.preventDefault();
+                //e.preventDefault();
                 
                 // Get form data
                 const formData = {
