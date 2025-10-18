@@ -820,6 +820,39 @@ body::before {
   text-transform: uppercase;
 }
 
+.contact-company {
+  display: inline-flex;            /* aligne horizontalement */
+  align-items: center;             /* centre verticalement l'icône et le texte */
+  gap: 0.6rem;                     /* espace entre icône et texte */
+  margin: 0;                       /* reset éventuel */
+  color: var(--text-secondary);      /* utilise la variable globale si définie */
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.contact-company p {
+  display: inline-flex;            /* aligne horizontalement */
+  align-items: center;             /* centre verticalement l'icône et le texte */
+  gap: 0.6rem;                     /* espace entre icône et texte */
+  margin: 0;                       /* reset éventuel */
+  color: var(--text-secondary);      /* utilise la variable globale si définie */
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.contact-company p:last-child {
+  margin-bottom: 0;
+}
+
+.contact-company i {
+  font-size: 14px;
+  margin-right: 0.5rem;
+  width: 16px;
+  flex-shrink: 0;
+}
+
 .contact-details {
   background: rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.1);
