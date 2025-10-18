@@ -59,6 +59,12 @@ body::before {
   font-family: 'Orbitron', monospace;
 }
 
+.subtitle {
+padding-top: 5rem;
+padding-bottom: 5rem;
+
+}
+
 /* Navigation */
 .navbar.is-dark {
   background: rgba(10, 10, 10, 0.95);
@@ -1378,6 +1384,7 @@ body::before {
     object-fit: cover; /* Pour que l'image couvre bien le conteneur sans être déformée */
     display: block; /* Pour éviter les espaces indésirables sous l'image */
 }
+
 
 /* PORTRAIT DARLENE MODAL*/
 
