@@ -1339,3 +1339,28 @@ body::before {
     object-fit: cover; /* Pour que l'image couvre bien le conteneur sans être déformée */
     display: block; /* Pour éviter les espaces indésirables sous l'image */
 }
+
+/* PORTRAIT DARLENE MODAL*/
+
+
+.darlene-photo-panel {
+    /* Fond sombre pour le panneau */
+    /* background-color: #1a1a2e;  */
+    /* Bordure cyan pour le look cyber */
+    /* border: 1px solid #ffffff;  */
+    /* padding: 0rem; */
+    border-radius: 4px; /* Coins légèrement arrondis */
+     /* Ombre lumineuse cyan */
+     /* box-shadow: 0 0 15px rgba(0, 188, 212, 0.4);   */
+    text-align: center; /* Pour centrer la légende */
+}
+
+.darlene-portrait {
+    width: 100%; /* L'image prend toute la largeur du panneau */
+    max-width: 350px; /* Limite la taille de l'image si le panneau est très large */
+    height: auto; /* Maintient les proportions */
+    border-radius: 4px; /* Légers coins arrondis pour l'image */
+    filter: grayscale(10%) brightness(1.1) contrast(1.1); /* Effet subtil pour un look "classieux/cyber" */
+    transition: all 0.3s ease-in-out; /* Transition douce pour les effets hover */
+}
+
