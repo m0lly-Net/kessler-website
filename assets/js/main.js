@@ -317,7 +317,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const form = modal.querySelector('.cyber-form');
         if (form) {
             form.addEventListener('submit', function(e) {
-                //e.preventDefault();
+                //e.preventDefault();    // Désactivé car empêche netlify de gérer les envois de forms sur boite mail.
                 
                 // Get form data
                 const formData = {
