@@ -1,86 +1,141 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Merci — Kessler Industries</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="/assets/css/main.css">
-  <style>
-    body {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 2rem;
-      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 50%, var(--primary-dark) 100%);
-      font-family: 'Rajdhani', sans-serif;
-      color: var(--text-primary);
-      text-align: center;
-    }
 
-    .thank-you-container {
-      max-width: 600px;
-      width: 100%;
-      background: rgba(10, 10, 10, 0.85);
-      border: 2px solid var(--cyber-cyan);
-      border-radius: 16px;
-      padding: 3rem 2rem;
-      box-shadow: 0 0 40px rgba(0, 212, 255, 0.3);
-      backdrop-filter: blur(10px);
-    }
+  <!-- Bulma CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 
-    .thank-you-title {
-      font-family: 'Orbitron', monospace;
-      font-size: 2.5rem;
-      color: var(--cyber-cyan);
-      margin-bottom: 1.5rem;
-      text-shadow: 0 0 15px var(--cyber-cyan);
-      letter-spacing: 2px;
-    }
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    .thank-you-message {
-      font-size: 1.2rem;
-      color: var(--text-secondary);
-      line-height: 1.8;
-      margin-bottom: 2rem;
-    }
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    .cyber-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.8rem;
-      font-family: 'Orbitron', monospace;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      padding: 1rem 2rem;
-      background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(0, 212, 255, 0.1) 100%);
-      border: 2px solid var(--cyber-cyan);
-      color: var(--cyber-cyan);
-      border-radius: 8px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
-    }
-
-    .cyber-btn:hover {
-      background: var(--cyber-cyan);
-      color: var(--primary-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
-    }
-  </style>
+  <!-- Custom CSS (ta feuille de style principale) -->
+  <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 <body>
-  <div class="thank-you-container">
-    <h1 class="thank-you-title glitch" data-text="CONFIRMATION">CONFIRMATION</h1>
-    <p class="thank-you-message">
-      «Votre message a bien été envoyé. Notre équipe le traitera dans les plus brefs délais.»
-    </p>
-    <a href="/" class="cyber-btn">
-      <i class="fas fa-arrow-left"></i> RETOUR À L'ACCUEIL
-    </a>
-  </div>
+  <!-- Navigation (identique à l'accueil pour cohérence) -->
+  <!-- <nav class="navbar is-dark is-fixed-top" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+        <span class="logo-text">KESSLER</span>
+        <span class="logo-subtext">INDUSTRIES</span>
+      </a>
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div id="navbarMenu" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#about">À PROPOS</a>
+        <a class="navbar-item" href="#subsidiaries">FILIALES</a>
+        <a class="navbar-item" href="#news">ACTUALITÉS</a>
+        <a class="navbar-item" href="#investors">INVESTISSEURS</a>
+        <a class="navbar-item" href="#contacts">CONTACTS</a>
+      </div>
+    </div>
+  </nav> -->
+
+  <!-- Merci content — utilise les styles globaux (body, containers, cyber-*) -->
+  <section class="hero is-fullheight cyber-hero" style="padding-top:6rem;">
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <div class="thank-you-container" style="max-width:800px; margin: 0 auto;">
+          <div style="display:flex; align-items:center; justify-content:center; gap:1rem; margin-bottom:1.25rem;">
+            <!-- <div class="modal-avatar cyan-avatar" style="width:96px; height:96px; border-width:3px;">
+              <span class="avatar-initials" style="font-size:1.4rem;">K24</span>
+            </div> -->
+            <div style="text-align:left;">
+              <h1 class="cyber-title" style="font-size:2rem; margin:0;">CONFIRMATION</h1>
+              <div style="color:var(--text-secondary); font-family:'Rajdhani', sans-serif; letter-spacing:1px; margin-top:0.25rem;">
+                <small>— Kessler Industries</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="cyber-card" style="padding:2rem; background: rgba(10,10,10,0.7); border-radius:12px;">
+            <p class="is-size-5" style="color:var(--text-secondary); line-height:1.8; margin-bottom:1.5rem;">
+              Votre message a bien été transmis à votre destinataire. Vous recevrez une réponse dans les meilleurs délais.»
+            </p>
+
+            <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+              <a href="/" class="cyber-btn" style="min-width:200px;">
+                <i class="fas fa-arrow-left"></i> RETOUR À L'ACCUEIL
+              </a>
+
+              <a href="/#contacts" class="cyber-btn" style="min-width:200px; background:transparent; color:var(--text-secondary); border-color: rgba(255,255,255,0.08); box-shadow:none;">
+                <i class="fas fa-address-book"></i> NOUS CONTACTER
+              </a>
+            </div>
+          </div>
+
+          <p style="color:var(--text-muted); margin-top:1rem; font-size:0.9rem;">
+            Si vous n'avez pas reçu de réponse sous 48 heures, contactez directement <strong>DARLENE</strong> Kessler.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer (repris de l'accueil pour cohérence) -->
+  <footer class="footer cyber-footer" style="margin-top:2rem;">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-6">
+          <div class="footer-brand">
+            <h3 class="title is-4">
+              <span class="logo-text">KESSLER</span>
+              <span class="logo-subtext">INDUSTRIES</span><br>
+            </h3>
+            <p class="subtitle is-6">L'avenir commence ici.</p>
+          </div>
+        </div>
+        <div class="column is-6">
+          <div class="footer-links">
+            <div class="columns">
+              <div class="column">
+                <h4 class="title is-6 has-text-cyan">Corporation</h4>
+                <ul>
+                  <li><a href="/">À Propos</a></li>
+                  <li><a href="/#subsidiaries">Filiales</a></li>
+                  <li><a href="/#news">Actualités</a></li>
+                </ul>
+              </div>
+              <div class="column">
+                <h4 class="title is-6 has-text-cyan">Légal</h4>
+                <ul>
+                  <li><a href="#">Conditions d'Usage</a></li>
+                  <li><a href="#">Politique de Confidentialité</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr class="cyber-divider">
+      <div class="has-text-centered">
+        <p class="copyright">
+          © Kessler Industries. Tous droits réservés. 
+          <span class="has-text-grey">| Niveau de Classification: CORPORATE-DELTA</span>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Garde le même main.js si besoin -->
+  <script src="/assets/js/main.js"></script>
+
+  <!-- Optionnel : redirection automatique après X secondes
+  <script>
+    setTimeout(() => { window.location.href = '/'; }, 7000); // redirige vers l'accueil après 7s
+  </script>
+  -->
 </body>
 </html>
