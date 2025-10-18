@@ -231,18 +231,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     `;
     document.head.appendChild(style);
+    
  // ===== CONTACT MODALS FUNCTIONALITY =====
     
     // Modal configuration mapping contact cards to modals
     const contactModalMap = {
-        0: 'modal-darlene',     // Marcus Kessler
-        1: 'modal-alexis',      // Alexis Shimura
-        2: 'modal-viktor',      // Viktor Reeves
-        3: 'modal-natasha',     // Natasha Park
-        4: 'modal-james',       // James Chen
-        5: 'modal-elena',       // Elena Volkov
-        6: 'modal-thomas',      // Thomas Müller
-        7: 'modal-sofia'        // Sofia Kim
+        0: 'modal-darlene',      // Darlene Kessler
+        1: 'modal-pelagia',      // Pelagia Nomura
+        2: 'modal-aexe',      // Pelagia Nomura
+        3: 'modal-talia',        // Talia Voss
+        4: 'modal-elizabeth',    // Elizabeth Spenecr
+        5: 'modal-daria',       // Daria Volkova
+        6: 'modal-james',       // Jemes Shen
+        7: 'modal-thomas',      // Thomas Müller
+        
     };
     
     // Get all contact cards

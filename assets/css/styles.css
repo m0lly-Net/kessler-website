@@ -1324,8 +1324,8 @@ body::before {
 .contact-avatar {
     /* Garde les styles existants pour le conteneur de l'avatar */
     /* Par exemple, si tu avais un background-color, une taille fixe, etc. */
-    width: 80px; /* Exemple de taille */
-    height: 80px; /* Exemple de taille */
+    width: 150px; /* Exemple de taille */
+    height: 150px; /* Exemple de taille */
     border-radius: 50%; /* Pour rendre l'avatar rond */
     overflow: hidden; /* Pour que l'image ne dépasse pas le cercle */
     display: flex; /* Pour centrer l'image si elle est plus petite */
