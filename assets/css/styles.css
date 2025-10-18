@@ -1370,3 +1370,69 @@ body::before {
     transition: all 0.3s ease-in-out; /* Transition douce pour les effets hover */
 }
 
+
+/* HERO VIDEO TEST  */
+/* Container hero position */
+.cyber-hero {
+  position: relative;
+  overflow: hidden;
+  background-color: #0b0b12; /* fallback */
+  --hero-overlay: linear-gradient(180deg, rgba(10,10,10,0.35), rgba(10,10,10,0.55));
+}
+
+/* Fullscreen video */
+.hero-video {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: auto;
+  height: 120%;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none; /* avoid interactions */
+  filter: contrast(1.05) saturate(1.05) brightness(0.85);
+  will-change: transform;
+}
+
+/* Overlay to ensure readable foreground text */
+.cyber-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--hero-overlay);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Ensure content sits above video+overlay */
+.cyber-hero .hero-body,
+.cyber-hero .container {
+  position: relative;
+  z-index: 2;
+  color: var(--text-primary);
+}
+
+/* Improve text contrast if necessary */
+.cyber-title,
+.cyber-subtitle,
+.stat-box { 
+  text-shadow: 0 6px 18px rgba(0,0,0,0.6);
+}
+
+/* Hide video and use poster on small screens (avoid mobile autoplay issues & bandwidth) */
+@media (max-width: 768px) {
+  .hero-video { display: none; }
+  .cyber-hero {
+    background-image: url('/assets/img/hero-poster.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+/* Respect users' reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .hero-video { display: none; }
+}
