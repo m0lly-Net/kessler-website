@@ -75,14 +75,13 @@
             </div>
             <div class="column is-narrow">
                 <div class="stat-box">
-                <!-- <span class="stat-number">16.7M₡</span> -->
-                <span data-sheet="C4" data-sheet-suffix=" M₡" class="stat-number"></span>
+                <span class="stat-number">16.7M₡</span>
                 <span class="stat-label">RÉINVESTIS<br> DANS LE SECTEUR</span>
                 </div>
             </div>
             <div class="column is-narrow">
                 <div class="stat-box">
-                <span data-sheet="C5" data-sheet-suffix=" M₡" class="stat-number"></span>
+                <span class="stat-number">14.7M₡</span>
                 <span class="stat-label">VALORISATION <br> ACTUELLE</span>
                 </div>
             </div>
@@ -209,8 +208,8 @@
                                     <!-- <span class="tag is-dark">Nano-médecine</span> -->
                                 </div>
                                 <div class="stats-mini mt-4">
-                                    <div><strong>Dépenses R&D (Année):</strong> <span data-sheet="C7" data-sheet-suffix=" M₡" class="stat-mini"></span></div>
-                                    <div><strong>Molécules dévellopées:</strong> <span data-sheet="C8" class="stat-mini"></span></div>
+                                    <div><strong>Dépenses R&D (Année):</strong> 2.5M€</div>
+                                    <div><strong>Molécules dévellopées:</strong> 9</div>
                                     <!-- <div><strong>Perso:</strong> 623K</div> -->
                                 </div>
                             </div>
@@ -271,7 +270,7 @@
                                     <!-- <span class="tag is-dark">AITL</span> -->
                                 </div>
                                 <div class="stats-mini mt-4">
-                                    <div><strong>Produits vendu depuis 374:</strong> <span data-sheet="C9" class="stat-mini"></span></div>
+                                    <div><strong>Produits vendu depuis 374:</strong> 598</div>
                                     <div><strong>Positionnement tarifaire:</strong> #1 sur 30 produits</div>
                                     <!-- <div><strong>Employés:</strong> 847K</div> -->
                                 </div>
@@ -428,7 +427,24 @@
                                         <div class="stat-info">
                                             <!-- Stream et affichage du % de croissance -->
                                             <div id="stat" class="stat-number has-text-success"></div>
-                                                <span data-sheet="C11" class="stat-number has-text-success"></span>
+                                            <script>
+                                            (async () => {
+                                            const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQxCAf6fAQINNxaCNHB5t-5cKIZ0jZLBDiFtad_ohe5vHoGhTDPg0DSMqlKyEiIl-dq6bSEnR3rFHxZ/pub?output=csv';
+                                            try {
+                                                const res = await fetch(url, { cache: 'no-store' });
+                                                if (!res.ok) throw new Error('HTTP ' + res.status);
+                                                const text = (await res.text()).trim(); // contenu brut (ex: 254 ou +254%)
+                                                // Si la cellule contient un nombre simple (ex: 254), on formate en +254%
+                                                // Si elle contient déjà un signe/%, on nettoie pour garder la partie numérique.
+                                                const numeric = text.replace(/[^\d.\-]/g, '');
+                                                const display = numeric ? `+${numeric}%` : 'N/A';
+                                                document.getElementById('stat').textContent = display;
+                                            } catch (e) {
+                                                console.error(e);
+                                                document.getElementById('stat').textContent = 'N/A';
+                                            }
+                                            })();
+                                            </script>
                                             <div class="stat-label">Croissance 6 ans</div>
                                         </div>
                                     </div>
@@ -439,8 +455,8 @@
                                             <i class="fas fa-money-bill-trend-up has-text-warning"></i>
                                         </div>
                                         <div class="stat-info">
-                                            <span data-sheet="C12" class="stat-number has-text-success"></span>
-                                            <div class="stat-label">Cours de l'action</div>                                        
+                                            <div class="stat-number">104.10 ₡</div>
+                                            <div class="stat-label">Cours de l'action</div>
                                         </div>
                                     </div>
                                 </div>
@@ -452,7 +468,7 @@
                             <h4 class="title is-6 has-text-cyan mb-4">Cours des actions Kessler Industries</h4>
                             <div class="cyber-iframe-wrapper">
                                 <iframe width="100%" height="350" seamless frameborder="0" scrolling="no" 
-                                    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQxCAf6fAQINNxaCNHB5t-5cKIZ0jZLBDiFtad_ohe5vHoGhTDPg0DSMqlKyEiIl-dq6bSEnR3rFHxZ/pubchart?oid=335126506&amp;format=interactive"
+                                    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ-VrJkep8xR9-pUZvH4xiUPSHSayDbGzmW8EArvwtdIbpJ4r_fUS1-r9yfN1bw5FCobnJw3NfpV7g9/pubchart?oid=1877653669&amp;format=interactive"
                                     style="border: 2px solid #00d1ff; border-radius: 8px; box-shadow: 0 0 20px rgba(0, 209, 255, 0.3); background: #1a1a2e;">
                                 </iframe>
                             </div>
@@ -1034,13 +1050,5 @@
     <!-- Scripts -->
     <script src="assets/js/main.js"></script>
     <script src="assets/js/modals.js"></script>>
-    <script src="assets/js/sheet-dispatcher.js"></script>
-    <script>
-    (function(){
-        const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQxCAf6fAQINNxaCNHB5t-5cKIZ0jZLBDiFtad_ohe5vHoGhTDPg0DSMqlKyEiIl-dq6bSEnR3rFHxZ/pub?output=csv';
-        // lance la récupération et le dispatch automatique des données de la feuille DATASTREAM
-        SheetDispatcher.init({ url: url, cache: 'no-store', autoDispatch: true });
-    })();
-    </script>
 </body>
 </html>
