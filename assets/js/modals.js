@@ -4,12 +4,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Modal configuration mapping contact cards to modals
     const contactModalMap = {
         0: 'modal-darlene',      
-        1: 'modal-pelagia',      
-        2: 'modal-aexe',      
-        3: 'modal-talia',        
-        4: 'modal-elizabeth',    
-        5: 'modal-daria',       
-        6: 'modal-james',       
+        1: 'modal-pelagia',         
+        2: 'modal-aexe',        
+        3: 'modal-james',    
+        4: 'modal-talia',
+        5: 'modal-elizabeth',       
+        6: 'modal-daria',       
         7: 'modal-thomas',      // Thomas Müller (pas utilisé - tester si suppression ok DQP)
         
     };
