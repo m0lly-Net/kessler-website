@@ -342,10 +342,7 @@ document.addEventListener('DOMContentLoaded', function() {
     //         });
     //     }
     // });
- 
-    
-
-    
+      
     // Smooth scroll to contact section if clicked from nav
     const contactNavLink = document.querySelector('a[href="#contacts"]');
     if (contactNavLink) {
