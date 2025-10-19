@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         4: 'modal-elizabeth',    
         5: 'modal-daria',       
         6: 'modal-james',       
-        7: 'modal-thomas',      // Thomas Müller
+        7: 'modal-thomas',      // Thomas Müller (pas utilisé - tester si suppression ok DQP)
         
     };
     

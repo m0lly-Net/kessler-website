@@ -780,6 +780,12 @@ padding-bottom: 5rem;
   box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
 }
 
+.black-avatar {
+  background: rgba(0, 255, 136, 0.15);
+  border-color: var(--primary-dark);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
 .avatar-initials {
   font-family: 'Orbitron', monospace;
   font-size: 2rem;
