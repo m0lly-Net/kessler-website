@@ -29,6 +29,54 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    // ===== CONFIGURATION DES BOUTONS POUR ELIZABETH SPENCER =====
+    
+    // Bouton "Voir le profil" de Elizabeth Spencer
+    const btnProfileElizabeth = document.getElementById('btn-profile-elizabeth');
+    if (btnProfileElizabeth) {
+        btnProfileElizabeth.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation(); // Empêche la propagation au parent
+            openModal('modal-elizabeth-profile');
+            console.log('✅ Modal profil Elizabeth ouvert');
+        });
+    }
+    
+    // Bouton "Envoyer un message" de Elizabeth Spencer
+    const btnMessageElizabeth = document.getElementById('btn-message-elizabeth');
+    if (btnMessageElizabeth) {
+        btnMessageElizabeth.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation(); // Empêche la propagation au parent
+            openModal('modal-elizabeth-message');
+            console.log('✅ Modal message Elizabeth ouvert');
+        });
+    }
+    
+    // ===== CONFIGURATION DES BOUTONS POUR DARIA VOLKOVA =====
+    
+    // Bouton "Voir le profil" de Daria Volkova
+    const btnProfileDaria = document.getElementById('btn-profile-daria');
+    if (btnProfileDaria) {
+        btnProfileDaria.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation(); // Empêche la propagation au parent
+            openModal('modal-daria-profile');
+            console.log('✅ Modal profil Daria ouvert');
+        });
+    }
+    
+    // Bouton "Envoyer un message" de Daria Volkova
+    const btnMessageDaria = document.getElementById('btn-message-daria');
+    if (btnMessageDaria) {
+        btnMessageDaria.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation(); // Empêche la propagation au parent
+            openModal('modal-daria-message');
+            console.log('✅ Modal message Daria ouvert');
+        });
+    }
+    
     // ===== FONCTIONS DE GESTION DES MODALS =====
     
     /**
@@ -61,7 +109,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Récupère tous les nouveaux modals (ceux avec les IDs spécifiques)
     const newModals = [
         document.getElementById('modal-talia-profile'),
-        document.getElementById('modal-talia-message')
+        document.getElementById('modal-talia-message'),
+        document.getElementById('modal-elizabeth-profile'),
+        document.getElementById('modal-elizabeth-message'),
+        document.getElementById('modal-daria-profile'),
+        document.getElementById('modal-daria-message')
     ].filter(modal => modal !== null);
     
     // Ajoute les événements de fermeture pour chaque modal
