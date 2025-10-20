@@ -1,10 +1,8 @@
-
-/* Kessler Industries - Cyberpunk Corporate Theme */
-
+/* Kessler Industries - Theme Global */
 /* Import Orbitron and Rajdhani fonts */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap');
 
-/* Color Palette */
+/* Color Palette & global sizes */
 :root {
   --primary-dark: #0a0a0a;
   --secondary-dark: #1a1a1a;
@@ -18,6 +16,12 @@
   --text-muted: #666666;
   --glass-bg: rgba(45, 45, 45, 0.1);
   --border-cyber: rgba(0, 212, 255, 0.3);
+
+  /* Useful sizes */
+  --avatar-size: 100px;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
 }
 
 /* Base Styles */
@@ -45,7 +49,7 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: 
+  background-image:
     radial-gradient(circle at 25% 25%, var(--cyber-cyan) 0%, transparent 50%),
     radial-gradient(circle at 75% 75%, var(--cyber-red) 0%, transparent 50%);
   opacity: 0.03;
@@ -60,9 +64,8 @@ body::before {
 }
 
 .subtitle {
-padding-top: 5rem;
-padding-bottom: 5rem;
-
+  padding-top: 5rem;
+  padding-bottom: 5rem;
 }
 
 /* Navigation */
@@ -128,25 +131,33 @@ padding-bottom: 5rem;
   width: 80%;
 }
 
-/* Hero Section */
+/* HERO SECTION (fusion propre pour animation + overlay) */
 .cyber-hero {
   background: linear-gradient(45deg, var(--primary-dark), var(--secondary-dark));
   position: relative;
   overflow: hidden;
+  background-color: #0b0b12; /* fallback */
 }
 
+/* couche animée (cyberpulse) */
 .cyber-hero::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: 
+  inset: 0;
+  background-image:
     linear-gradient(90deg, transparent 0%, var(--cyber-cyan) 50%, transparent 100%),
     linear-gradient(0deg, transparent 0%, var(--cyber-red) 50%, transparent 100%);
   opacity: 0.05;
+  z-index: 0;
+  pointer-events: none;
   animation: cyberpulse 4s ease-in-out infinite alternate;
+}
+
+/* Ensure content above video/overlays */
+.cyber-hero .hero-body,
+.cyber-hero .container {
+  position: relative;
+  z-index: 2;
 }
 
 @keyframes cyberpulse {
@@ -159,10 +170,6 @@ padding-bottom: 5rem;
   font-weight: 900;
   font-size: 4rem;
   color: var(--cyber-cyan);
-  text-shadow: 
-    /* 0 0 10px var(--cyber-cyan), */
-    /* 0 0 20px var(--cyber-cyan), */
-    /* 0 0 40px var(--cyber-cyan); */
   letter-spacing: 4px;
   margin-bottom: 1rem;
   position: relative;
@@ -206,27 +213,15 @@ padding-bottom: 5rem;
 }
 
 @keyframes glitch-1 {
-  0%, 14%, 15%, 49%, 50%, 99%, 100% {
-    transform: translate(0);
-  }
-  15% {
-    transform: translate(-2px, 0);
-  }
-  50% {
-    transform: translate(2px, 0);
-  }
+  0%, 14%, 15%, 49%, 50%, 99%, 100% { transform: translate(0); }
+  15% { transform: translate(-2px, 0); }
+  50% { transform: translate(2px, 0); }
 }
 
 @keyframes glitch-2 {
-  0%, 20%, 21%, 62%, 63%, 99%, 100% {
-    transform: translate(0);
-  }
-  21% {
-    transform: translate(2px, 0);
-  }
-  63% {
-    transform: translate(-2px, 0);
-  }
+  0%, 20%, 21%, 62%, 63%, 99%, 100% { transform: translate(0); }
+  21% { transform: translate(2px, 0); }
+  63% { transform: translate(-2px, 0); }
 }
 
 /* Hero Stats */
@@ -241,7 +236,7 @@ padding-bottom: 5rem;
   padding: 2rem 1.5rem;
   text-align: center;
   backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
@@ -374,7 +369,7 @@ padding-bottom: 5rem;
   border: 1px solid var(--border-cyber);
   border-radius: 12px;
   backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   height: 100%;
 }
@@ -442,7 +437,7 @@ padding-bottom: 5rem;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
   backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .cyber-news-item:hover {
@@ -520,7 +515,7 @@ padding-bottom: 5rem;
   display: flex;
   align-items: center;
   gap: 1rem;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
 .stat-card:hover {
@@ -567,7 +562,7 @@ padding-bottom: 5rem;
   margin-bottom: 1rem;
   text-decoration: none;
   color: var(--text-primary);
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
 .report-item:hover {
@@ -665,19 +660,21 @@ padding-bottom: 5rem;
   .cyber-title {
     font-size: 2.5rem;
   }
-  
+
+  /* Ne pas casser la grille Bulma : basculer la direction du flex */
   .hero-stats .columns {
-    display: block;
+    flex-direction: column;
+    gap: 1rem;
   }
-  
+
   .stat-box {
     margin-bottom: 1rem;
   }
-  
+
   .cyber-section {
     padding: 3rem 0;
   }
-  
+
   .cyber-data-panel,
   .cyber-financial-panel,
   .cyber-reports {
@@ -712,10 +709,6 @@ padding-bottom: 5rem;
   overflow: hidden;
 }
 
-.cyber-iframe-wrapper iframe {
-  /* Allow iframe to use its defined width and height attributes */
-}
-
 /* Contact Cards */
 .contact-card {
   background: var(--glass-bg);
@@ -725,11 +718,13 @@ padding-bottom: 5rem;
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   text-align: center;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
+  user-select: none;
 }
 
 .contact-card:hover {
@@ -739,17 +734,18 @@ padding-bottom: 5rem;
 }
 
 .contact-avatar {
-  width: 100px;
-  height: 100px;
+  width: var(--avatar-size);
+  height: var(--avatar-size);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 1.5rem;
   position: relative;
-  border: 3px solid;
+  border: 3px solid rgba(255,255,255,0.06);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  overflow: hidden;
 }
 
 .contact-card:hover .contact-avatar {
@@ -781,7 +777,7 @@ padding-bottom: 5rem;
 }
 
 .black-avatar {
-  background: rgba(0, 255, 136, 0.15);
+  background: rgba(0, 0, 0, 0.15);
   border-color: var(--primary-dark);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
@@ -794,22 +790,20 @@ padding-bottom: 5rem;
   text-shadow: 0 0 10px currentColor;
 }
 
-.cyan-avatar .avatar-initials {
-  color: var(--cyber-cyan);
+.cyan-avatar .avatar-initials { color: var(--cyber-cyan); }
+.red-avatar .avatar-initials { color: var(--cyber-red); }
+.yellow-avatar .avatar-initials { color: var(--cyber-yellow); }
+.green-avatar .avatar-initials { color: var(--neon-green); }
+
+/* Avatar image helper */
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
-.red-avatar .avatar-initials {
-  color: var(--cyber-red);
-}
-
-.yellow-avatar .avatar-initials {
-  color: var(--cyber-yellow);
-}
-
-.green-avatar .avatar-initials {
-  color: var(--neon-green);
-}
-
+/* Contact Info / company */
 .contact-info {
   width: 100%;
 }
@@ -833,30 +827,28 @@ padding-bottom: 5rem;
 }
 
 .contact-company {
-  display: inline-flex;            /* aligne horizontalement */
-  align-items: center;             /* centre verticalement l'icône et le texte */
-  gap: 0.6rem;                     /* espace entre icône et texte */
-  margin: 0;                       /* reset éventuel */
-  color: var(--text-secondary);      /* utilise la variable globale si définie */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0;
+  color: var(--text-secondary);
   font-family: 'Rajdhani', sans-serif;
   font-weight: 600;
   font-size: 1rem;
 }
 
 .contact-company p {
-  display: inline-flex;            /* aligne horizontalement */
-  align-items: center;             /* centre verticalement l'icône et le texte */
-  gap: 0.6rem;                     /* espace entre icône et texte */
-  margin: 0;                       /* reset éventuel */
-  color: var(--text-secondary);      /* utilise la variable globale si définie */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0;
+  color: var(--text-secondary);
   font-family: 'Rajdhani', sans-serif;
   font-weight: 600;
   font-size: 0.85rem;
 }
 
-.contact-company p:last-child {
-  margin-bottom: 0;
-}
+.contact-company p:last-child { margin-bottom: 0; }
 
 .contact-company i {
   font-size: 14px;
@@ -884,9 +876,7 @@ padding-bottom: 5rem;
   word-break: break-all;
 }
 
-.contact-details p:last-child {
-  margin-bottom: 0;
-}
+.contact-details p:last-child { margin-bottom: 0; }
 
 .contact-details i {
   color: var(--cyber-cyan);
@@ -923,23 +913,13 @@ padding-bottom: 5rem;
 }
 
 /* Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--primary-dark);
-}
-
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--primary-dark); }
 ::-webkit-scrollbar-thumb {
   background: var(--cyber-cyan);
   border-radius: 4px;
 }
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--cyber-red);
-}
-
+::-webkit-scrollbar-thumb:hover { background: var(--cyber-red); }
 
 /* ===== CONTACT MODALS ===== */
 
@@ -950,7 +930,7 @@ padding-bottom: 5rem;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 9999;
+  z-index: 9999; /* conteneur modal */
   display: none;
   align-items: center;
   justify-content: center;
@@ -964,12 +944,8 @@ padding-bottom: 5rem;
 }
 
 @keyframes modalFadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 /* Modal Overlay */
@@ -981,7 +957,7 @@ padding-bottom: 5rem;
   height: 100%;
   background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(8px);
-  z-index: -1;
+  z-index: 9998; /* juste en dessous du contenu modal mais au-dessus du reste */
 }
 
 /* Modal Content */
@@ -993,49 +969,21 @@ padding-bottom: 5rem;
   background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(10, 10, 10, 0.95) 100%);
   border: 2px solid var(--cyber-cyan);
   border-radius: 16px;
-  box-shadow: 
+  box-shadow:
     0 0 30px rgba(0, 212, 255, 0.3),
     0 0 60px rgba(0, 212, 255, 0.2),
     inset 0 0 60px rgba(0, 212, 255, 0.05);
   backdrop-filter: blur(20px);
   overflow: hidden;
   animation: modalSlideUp 0.4s ease-out;
+  z-index: 9999; /* au-dessus de l'overlay */
 }
 
 @keyframes modalSlideUp {
-  from {
-    transform: translateY(50px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
-/* Modal Close Button */
-/* .modal-close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: rgba(255, 0, 64, 0.2);
-  border: 2px solid var(--cyber-red);
-  color: var(--cyber-red);
-  font-size: 2rem;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: 'Orbitron', monospace;
-  font-weight: 700;
-  line-height: 1;
-  z-index: 10;
-  box-shadow: 0 0 15px rgba(255, 0, 64, 0.3);
-} */
 
 .modal-close:hover {
   background: var(--cyber-red);
@@ -1062,7 +1010,7 @@ padding-bottom: 5rem;
   justify-content: center;
   border: 4px solid;
   position: relative;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .modal-avatar::before {
@@ -1108,10 +1056,7 @@ padding-bottom: 5rem;
   max-height: calc(90vh - 200px);
 }
 
-.modal-body::-webkit-scrollbar {
-  width: 6px;
-}
-
+.modal-body::-webkit-scrollbar { width: 6px; }
 .modal-body::-webkit-scrollbar-thumb {
   background: var(--cyber-cyan);
   border-radius: 3px;
@@ -1138,9 +1083,7 @@ padding-bottom: 5rem;
   letter-spacing: 1px;
 }
 
-.modal-bio h3 i {
-  font-size: 1.5rem;
-}
+.modal-bio h3 i { font-size: 1.5rem; }
 
 .modal-bio p {
   color: var(--text-secondary);
@@ -1150,9 +1093,7 @@ padding-bottom: 5rem;
   text-align: justify;
 }
 
-.modal-bio p:last-child {
-  margin-bottom: 0;
-}
+.modal-bio p:last-child { margin-bottom: 0; }
 
 /* Modal Contact Form */
 .modal-contact-form {
@@ -1174,14 +1115,12 @@ padding-bottom: 5rem;
   letter-spacing: 1px;
 }
 
-.modal-contact-form h3 i {
-  font-size: 1.5rem;
-}
+.modal-contact-form h3 i { font-size: 1.5rem; }
 
-/* Couleur rose pour tous les <strong> à l'intérieur de .modal-bio */
+/* Couleur accentuée pour <strong> dans modal-bio */
 .modal-bio strong {
-  color: #5cbe00;      /* rose vif — adapte la teinte si besoin */
-  font-weight: 700;    /* conserve l'effet "gras" sémantique */
+  color: #5cbe00;
+  font-weight: 700;
 }
 
 /* Cyber Form Styles */
@@ -1215,7 +1154,7 @@ padding-bottom: 5rem;
   color: var(--text-primary);
   font-family: 'Rajdhani', sans-serif;
   font-size: 1rem;
-  transition: all 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
   outline: none;
 }
 
@@ -1248,10 +1187,10 @@ padding-bottom: 5rem;
   padding: 1rem 2rem;
   border-radius: 8px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 2px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.8rem;
@@ -1266,76 +1205,23 @@ padding-bottom: 5rem;
   box-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
 }
 
-.cyber-btn:active {
-  transform: translateY(0);
-}
+.cyber-btn:active { transform: translateY(0); }
+.cyber-btn i { font-size: 1.2rem; }
 
-.cyber-btn i {
-  font-size: 1.2rem;
-}
 
-/* Contact Card Hover Effect for Clickability */
-.contact-card {
-  cursor: pointer;
-  user-select: none;
-}
-
-.contact-card .contact-avatar {
-  cursor: pointer;
-}
-
-/* Responsive Modal */
+/* Responsive Modal tweaks */
 @media screen and (max-width: 768px) {
-  .contact-modal {
-    padding: 1rem;
-  }
-  
-  .modal-content {
-    max-height: 95vh;
-    border-radius: 12px;
-  }
-  
-  .modal-header {
-    padding: 2rem 1.5rem 1.5rem;
-  }
-  
-  .modal-avatar {
-    width: 100px;
-    height: 100px;
-  }
-  
-  .modal-avatar .avatar-initials {
-    font-size: 2rem;
-  }
-  
-  .modal-name {
-    font-size: 1.5rem;
-  }
-  
-  .modal-title {
-    font-size: 1rem;
-  }
-  
-  .modal-body {
-    padding: 1.5rem;
-    max-height: calc(95vh - 180px);
-  }
-  
-  .modal-bio,
-  .modal-contact-form {
-    padding: 1rem;
-  }
-  
-  .modal-bio h3,
-  .modal-contact-form h3 {
-    font-size: 1.1rem;
-  }
-  
-  .modal-close {
-    width: 40px;
-    height: 40px;
-    font-size: 1.5rem;
-  }
+  .contact-modal { padding: 1rem; }
+  .modal-content { max-height: 95vh; border-radius: 12px; }
+  .modal-header { padding: 2rem 1.5rem 1.5rem; }
+  .modal-avatar { width: 100px; height: 100px; }
+  .modal-avatar .avatar-initials { font-size: 2rem; }
+  .modal-name { font-size: 1.5rem; }
+  .modal-title { font-size: 1rem; }
+  .modal-body { padding: 1.5rem; max-height: calc(95vh - 180px); }
+  .modal-bio, .modal-contact-form { padding: 1rem; }
+  .modal-bio h3, .modal-contact-form h3 { font-size: 1.1rem; }
+  .modal-close { width: 40px; height: 40px; font-size: 1.5rem; }
 }
 
 /* Success Message Animation */
@@ -1371,62 +1257,18 @@ padding-bottom: 5rem;
   }
 }
 
-
-.contact-avatar {
-    /* Garde les styles existants pour le conteneur de l'avatar */
-    /* Par exemple, si tu avais un background-color, une taille fixe, etc. */
-    width: 150px; /* Exemple de taille */
-    height: 150px; /* Exemple de taille */
-    border-radius: 50%; /* Pour rendre l'avatar rond */
-    overflow: hidden; /* Pour que l'image ne dépasse pas le cercle */
-    display: flex; /* Pour centrer l'image si elle est plus petite */
-    justify-content: center;
-    align-items: center;
-}
-
-.avatar-image {
-    width: 100%; /* L'image prend toute la largeur du conteneur */
-    height: 100%; /* L'image prend toute la hauteur du conteneur */
-    object-fit: cover; /* Pour que l'image couvre bien le conteneur sans être déformée */
-    display: block; /* Pour éviter les espaces indésirables sous l'image */
-}
-
-
-/* PORTRAIT DARLENE MODAL*/
-
-
-.darlene-photo-panel {
-    /* Fond sombre pour le panneau */
-    /* background-color: #1a1a2e;  */
-    /* Bordure cyan pour le look cyber */
-    /* border: 1px solid #ffffff;  */
-    /* padding: 0rem; */
-    border-radius: 4px; /* Coins légèrement arrondis */
-     /* Ombre lumineuse cyan */
-     /* box-shadow: 0 0 15px rgba(0, 188, 212, 0.4);   */
-    text-align: center; /* Pour centrer la légende */
-}
-
+/* PORTRAIT DARLENE MODAL */
+.darlene-photo-panel { border-radius: 4px; text-align: center; }
 .darlene-portrait {
-    width: 100%; /* L'image prend toute la largeur du panneau */
-    max-width: 350px; /* Limite la taille de l'image si le panneau est très large */
-    height: auto; /* Maintient les proportions */
-    border-radius: 4px; /* Légers coins arrondis pour l'image */
-    filter: grayscale(10%) brightness(1.1) contrast(1.1); /* Effet subtil pour un look "classieux/cyber" */
-    transition: all 0.3s ease-in-out; /* Transition douce pour les effets hover */
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  border-radius: 4px;
+  filter: grayscale(10%) brightness(1.1) contrast(1.1);
+  transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
 }
 
-
-/* HERO VIDEO TEST  */
-/* Container hero position */
-.cyber-hero {
-  position: relative;
-  overflow: hidden;
-  background-color: #0b0b12; /* fallback */
-  --hero-overlay: linear-gradient(180deg, rgba(10,10,10,0.35), rgba(10,10,10,0.55));
-}
-
-/* Fullscreen video */
+/* HERO VIDEO (kept but simplified) */
 .hero-video {
   position: absolute;
   left: 50%;
@@ -1438,37 +1280,19 @@ padding-bottom: 5rem;
   transform: translate(-50%, -50%);
   object-fit: cover;
   z-index: 0;
-  pointer-events: none; /* avoid interactions */
+  pointer-events: none;
   filter: contrast(1.05) saturate(1.05) brightness(0.85);
   will-change: transform;
-}
-
-/* Overlay to ensure readable foreground text */
-.cyber-hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--hero-overlay);
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* Ensure content sits above video+overlay */
-.cyber-hero .hero-body,
-.cyber-hero .container {
-  position: relative;
-  z-index: 2;
-  color: var(--text-primary);
 }
 
 /* Improve text contrast if necessary */
 .cyber-title,
 .cyber-subtitle,
-.stat-box { 
+.stat-box {
   text-shadow: 0 6px 18px rgba(0,0,0,0.6);
 }
 
-/* Hide video and use poster on small screens (avoid mobile autoplay issues & bandwidth) */
+/* Hide video and use poster on small screens */
 @media (max-width: 768px) {
   .hero-video { display: none; }
   .cyber-hero {
@@ -1480,5 +1304,16 @@ padding-bottom: 5rem;
 
 /* Respect users' reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
-  .hero-video { display: none; }
+  .hero-video,
+  .glitch::before,
+  .glitch::after,
+  .cyber-hero::before {
+    animation: none;
+  }
 }
+
+/* Google Sheets iframe styling kept minimal */
+.cyber-iframe-wrapper { display: flex; justify-content: center; align-items: center; padding: 1rem; background: rgba(0,0,0,0.3); border-radius: 12px; overflow: hidden; }
+
+/* Animation on small components (use sparingly) */
+.fade-in-up { animation: fadeInUp 0.6s ease-out; }
