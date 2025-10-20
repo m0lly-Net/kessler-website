@@ -1317,3 +1317,29 @@ body::before {
 
 /* Animation on small components (use sparingly) */
 .fade-in-up { animation: fadeInUp 0.6s ease-out; }
+
+
+/* APPARITION PROGRESSIVE DES STATS DU HERO (TEST) */
+
+/* Option B : état caché géré uniquement par le CSS (préféré) */
+.hero-stat-section {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 600ms ease, transform 600ms ease;
+  /* on lance l'animation différée qui rend visible à la fin */
+  animation: hero-reveal 600ms ease 2s forwards;
+}
+
+@keyframes hero-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+    visibility: hidden;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+  }
+}
