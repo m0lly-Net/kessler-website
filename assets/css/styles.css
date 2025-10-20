@@ -1342,3 +1342,149 @@ body::before {
     visibility: visible;
   }
 }
+
+/* ===== CONTACT BUTTONS (PROFILE & MESSAGE) ===== */
+
+/* Container for buttons */
+.contact-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Base style for contact buttons */
+.contact-btn {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  border: 2px solid;
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+  min-width: 180px;
+}
+
+.contact-btn i {
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.contact-btn:hover i {
+  transform: scale(1.15);
+}
+
+/* Glowing effect on hover */
+.contact-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translate(-50%, -50%);
+  transition: width 0.5s ease, height 0.5s ease;
+  z-index: 0;
+}
+
+.contact-btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.contact-btn span,
+.contact-btn i {
+  position: relative;
+  z-index: 1;
+}
+
+/* Profile Button - Cyan Theme */
+.btn-profile {
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.15) 0%, rgba(0, 212, 255, 0.05) 100%);
+  border-color: var(--cyber-cyan);
+  color: var(--cyber-cyan);
+  box-shadow: 
+    0 0 15px rgba(0, 212, 255, 0.2),
+    inset 0 0 15px rgba(0, 212, 255, 0.05);
+}
+
+.btn-profile:hover {
+  background: var(--cyber-cyan);
+  color: var(--primary-dark);
+  transform: translateY(-3px);
+  box-shadow: 
+    0 0 30px rgba(0, 212, 255, 0.5),
+    0 5px 20px rgba(0, 212, 255, 0.3);
+  border-color: var(--cyber-cyan);
+}
+
+.btn-profile:active {
+  transform: translateY(-1px);
+}
+
+/* Message Button - Neon Green Theme */
+.btn-message {
+  background: linear-gradient(135deg, rgba(0, 255, 136, 0.15) 0%, rgba(0, 255, 136, 0.05) 100%);
+  border-color: var(--neon-green);
+  color: var(--neon-green);
+  box-shadow: 
+    0 0 15px rgba(0, 255, 136, 0.2),
+    inset 0 0 15px rgba(0, 255, 136, 0.05);
+}
+
+.btn-message:hover {
+  background: var(--neon-green);
+  color: var(--primary-dark);
+  transform: translateY(-3px);
+  box-shadow: 
+    0 0 30px rgba(0, 255, 136, 0.5),
+    0 5px 20px rgba(0, 255, 136, 0.3);
+  border-color: var(--neon-green);
+}
+
+.btn-message:active {
+  transform: translateY(-1px);
+}
+
+/* Responsive adjustments for contact buttons */
+@media screen and (max-width: 768px) {
+  .contact-buttons {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  .contact-btn {
+    min-width: 100%;
+    padding: 0.9rem 1.2rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* Animation for button appearance */
+@keyframes buttonFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.contact-btn {
+  animation: buttonFadeIn 0.4s ease-out;
+}

@@ -4,6 +4,19 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log('🚀 Contact Modals - Nouveau système initialisé');
+
+    // ===== CONFIGURATION DES BOUTONS POUR JAMES CHEN =====
+    
+    // Bouton "Voir le profil" de James Chen
+    const btnProfileJames = document.getElementById('btn-profile-james');
+    if (btnProfileJames) {
+        btnProfileJames.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation(); // Empêche la propagation au parent
+            openModal('modal-james-profile');
+            console.log('✅ Modal profil James ouvert');
+        });
+    }
     
     // ===== CONFIGURATION DES BOUTONS POUR TALIA VOSS =====
     
@@ -108,6 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Récupère tous les nouveaux modals (ceux avec les IDs spécifiques)
     const newModals = [
+        document.getElementById('modal-james-profile'),
         document.getElementById('modal-talia-profile'),
         document.getElementById('modal-talia-message'),
         document.getElementById('modal-elizabeth-profile'),
