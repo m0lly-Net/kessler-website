@@ -1321,7 +1321,6 @@ body::before {
 
 /* APPARITION PROGRESSIVE DES STATS DU HERO (TEST) */
 
-/* Option B : état caché géré uniquement par le CSS (préféré) */
 .hero-stat-section {
   opacity: 0;
   visibility: hidden;
