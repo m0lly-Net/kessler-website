@@ -81,34 +81,34 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         // Handle form submission
-        const form = modal.querySelector('.cyber-form');
-        if (form) {
-            form.addEventListener('submit', function(e) {
-                //e.preventDefault();    // Désactivé car empêche netlify de gérer les envois de forms sur boite mail.
+        // const form = modal.querySelector('.cyber-form');
+        // if (form) {
+        //     form.addEventListener('submit', function(e) {
+        //         //e.preventDefault();    // Désactivé car empêche netlify de gérer les envois de forms sur boite mail.
                 
-                // Get form data
-                const formData = {
-                    name: form.querySelector('input[name="name"]').value,
-                    // email: form.querySelector('input[name="email"]').value,
-                    subject: form.querySelector('input[name="subject"]').value,
-                    message: form.querySelector('textarea[name="message"]').value
-                };
+        //         // Get form data
+        //         const formData = {
+        //             name: form.querySelector('input[name="name"]').value,
+        //             // email: form.querySelector('input[name="email"]').value,
+        //             subject: form.querySelector('input[name="subject"]').value,
+        //             message: form.querySelector('textarea[name="message"]').value
+        //         };
                 
-                // Show success message
-                showSuccessMessage('Message envoyé avec succès! 🚀');
+        //         // Show success message
+        //         showSuccessMessage('Message envoyé avec succès! 🚀');
                 
-                // Reset form
-                form.reset();
+        //         // Reset form
+        //         form.reset();
                 
-                // Close modal after 2 seconds
-                setTimeout(() => {
-                    closeModal(modal);
-                }, 2000);
+        //         // Close modal after 2 seconds
+        //         setTimeout(() => {
+        //             closeModal(modal);
+        //         }, 2000);
                 
-                // Log form data (in real app, this would send to server)
-                console.log('Form submitted:', formData);
-            });
-        }
+        //         // Log form data (in real app, this would send to server)
+        //         console.log('Form submitted:', formData);
+        //     });
+        // }
 
     // Function to show success message
     function showSuccessMessage(message) {
