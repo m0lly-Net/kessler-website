@@ -5,7 +5,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     console.log('🚀 Contact Modals - Nouveau système initialisé');
 
-    // ===== CONFIGURATION DES BOUTONS POUR JAMES CHEN =====
+    // ===== CONFIGURATION DES BOUTONS POUR JAMES CHEN =====-
     
     // Bouton "Voir le profil" de James Chen
     const btnProfileJames = document.getElementById('btn-profile-james');
