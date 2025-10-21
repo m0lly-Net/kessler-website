@@ -1431,6 +1431,11 @@ body::before {
   border-color: var(--cyber-cyan);
 }
 
+/* Cibler l'icône à l'intérieur du bouton au survol */
+.btn-profile:hover i {
+  color: var(--primary-dark);
+}
+
 .btn-profile:active {
   transform: translateY(-1px);
 }
@@ -1453,6 +1458,11 @@ body::before {
     0 0 30px rgba(0, 255, 136, 0.5),
     0 5px 20px rgba(0, 255, 136, 0.3);
   border-color: var(--neon-green);
+}
+
+/* Cibler l'icône à l'intérieur du bouton au survol */
+.btn-message:hover i {
+  color: var(--primary-dark);
 }
 
 .btn-message:active {
