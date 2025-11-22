@@ -1,0 +1,1375 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pentanyl© - Fiche Medic</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&family=Share+Tech+Mono&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: #0a0a0a;
+            color: #f0f0f0;
+            line-height: 1.8;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 0 50px rgba(0, 255, 255, 0.1);
+        }
+        
+        /* Scanlines effect */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 255, 255, 0.02) 0px,
+                rgba(0, 255, 255, 0.02) 1px,
+                transparent 1px,
+                transparent 3px
+            );
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .content {
+            position: relative;
+            z-index: 2;
+            padding: 60px 80px;
+        }
+        
+        /* Header */
+        .main-header {
+            text-align: center;
+            border-bottom: 4px solid #00ffff;
+            padding-bottom: 40px;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .logo {
+            max-width: 350px;
+            width: 100%;
+            height: auto;
+            margin-bottom: 25px;
+        }
+        
+        .main-header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 48px;
+            font-weight: 900;
+            color: #00ffff;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+            margin-bottom: 15px;
+        }
+        
+        .main-header .subtitle {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 18px;
+            color: #999;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+        
+        .main-header .restriction {
+            font-size: 16px;
+            color: #ff3333;
+            margin-top: 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .stamp {
+            position: absolute;
+            top: -20px;
+            right: 0;
+            max-width: 120px;
+            width: 100%;
+            height: auto;
+            opacity: 0.85;
+        }
+        
+        /* Product Info Box */
+        .product-box {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.15) 0%, rgba(0, 255, 255, 0.08) 100%);
+            border: 3px solid #00ffff;
+            border-radius: 12px;
+            padding: 35px;
+            margin-bottom: 60px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-item {
+            text-align: center;
+        }
+        
+        .product-label {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 13px;
+            color: #999;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        
+        .product-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 20px;
+            color: #00ffff;
+            font-weight: 700;
+        }
+        
+        /* Sections */
+        .section {
+            margin-bottom: 50px;
+            border: 2px solid #444;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .section-header {
+            padding: 25px 35px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .section-header.cyan {
+            background: linear-gradient(90deg, #005a5a 0%, #003d3d 100%);
+            color: #00ffff;
+            border-left: 6px solid #00ffff;
+        }
+        
+        .section-header.red {
+            background: linear-gradient(90deg, #5a0000 0%, #3d0000 100%);
+            color: #ff3333;
+            border-left: 6px solid #ff3333;
+        }
+        
+        .section-header.yellow {
+            background: linear-gradient(90deg, #5a5a00 0%, #3d3d00 100%);
+            color: #ffff00;
+            border-left: 6px solid #ffff00;
+        }
+        
+        .section-content {
+            padding: 40px;
+            background: rgba(25, 25, 25, 0.9);
+            font-size: 16px;
+        }
+        
+        /* Decision Tree */
+        .decision-tree {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .decision-step {
+            background: rgba(0, 255, 255, 0.08);
+            border-left: 4px solid #00ffff;
+            padding: 25px;
+            border-radius: 8px;
+        }
+        
+        .decision-step strong {
+            color: #00ffff;
+            font-size: 20px;
+            display: block;
+            margin-bottom: 15px;
+        }
+        
+        .decision-step ul {
+            margin-left: 25px;
+            color: #ddd;
+            line-height: 2;
+        }
+        
+        .decision-step ul li {
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        
+        /* Checklist */
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .checklist li {
+            padding: 18px 25px;
+            margin-bottom: 12px;
+            background: rgba(0, 255, 255, 0.05);
+            border-left: 4px solid #00ffff;
+            position: relative;
+            padding-left: 55px;
+            font-size: 16px;
+            border-radius: 6px;
+        }
+        
+        .checklist li::before {
+            content: '☐';
+            position: absolute;
+            left: 20px;
+            color: #00ffff;
+            font-size: 20px;
+        }
+        
+        /* Injection Diagram */
+        .injection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .injection-method {
+            background: rgba(0, 255, 255, 0.08);
+            border: 2px solid #00ffff;
+            border-radius: 10px;
+            padding: 30px;
+        }
+        
+        .injection-method h4 {
+            font-family: 'Orbitron', sans-serif;
+            color: #00ffff;
+            font-size: 20px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        
+        .injection-method ol {
+            margin-left: 25px;
+            font-size: 15px;
+            line-height: 2;
+        }
+        
+        .injection-method ol li {
+            margin-bottom: 12px;
+        }
+        
+        .injection-note {
+            background: rgba(255, 255, 0, 0.15);
+            border-left: 4px solid #ffff00;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #ffff00;
+            border-radius: 6px;
+        }
+        
+        /* Dosage Table */
+        .dosage-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            font-size: 15px;
+        }
+        
+        .dosage-table th {
+            background: rgba(0, 255, 255, 0.25);
+            color: #00ffff;
+            padding: 18px;
+            text-align: left;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+        
+        .dosage-table td {
+            padding: 16px 18px;
+            border-bottom: 1px solid #444;
+        }
+        
+        .dosage-table tr:hover {
+            background: rgba(0, 255, 255, 0.08);
+        }
+        
+        /* Warning Box */
+        .warning-box {
+            background: linear-gradient(135deg, #660000 0%, #330000 100%);
+            border: 4px solid #ff3333;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 10px;
+        }
+        
+        .warning-box h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 24px;
+            color: #ff3333;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(255, 51, 51, 0.6);
+        }
+        
+        .warning-box ul {
+            margin-left: 25px;
+            color: #ffdddd;
+            line-height: 2;
+        }
+        
+        .warning-box ul li {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .warning-box .action {
+            background: rgba(255, 51, 51, 0.25);
+            border-left: 4px solid #ff3333;
+            padding: 25px;
+            margin-top: 20px;
+            font-weight: 600;
+            border-radius: 6px;
+        }
+        
+        /* Timeline */
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 35px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00ffff 0%, #004d4d 100%);
+        }
+        
+        .timeline-item {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .timeline-marker {
+            width: 70px;
+            height: 70px;
+            background: #00ffff;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 16px;
+            color: #000;
+            font-weight: 700;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+        }
+        
+        .timeline-label {
+            font-size: 15px;
+            color: #00ffff;
+            font-weight: 600;
+        }
+        
+        /* Surveillance Table */
+        .surveillance-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            font-size: 15px;
+        }
+        
+        .surveillance-table th {
+            background: rgba(0, 255, 255, 0.25);
+            color: #00ffff;
+            padding: 18px;
+            text-align: center;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 15px;
+            border: 1px solid #444;
+        }
+        
+        .surveillance-table td {
+            padding: 18px;
+            border: 1px solid #444;
+            text-align: center;
+            background: rgba(25, 25, 25, 0.7);
+        }
+        
+        /* Form */
+        .form-field {
+            margin-bottom: 25px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .form-label {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 15px;
+            color: #999;
+            text-transform: uppercase;
+        }
+        
+        .form-input {
+            background: rgba(0, 255, 255, 0.08);
+            border: 2px solid #00ffff;
+            border-radius: 6px;
+            padding: 15px;
+            color: #00ffff;
+            font-family: 'Rajdhani', sans-serif;
+            min-height: 50px;
+            font-size: 16px;
+        }
+        
+        /* Interactive Form Inputs */
+        input[type="text"],
+        input[type="datetime-local"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            background: rgba(10, 40, 50, 0.9);
+            border: 2px solid #00ffff;
+            border-radius: 6px;
+            padding: 15px;
+            color: #00ffff;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        input[type="text"]:focus,
+        input[type="datetime-local"]:focus,
+        input[type="number"]:focus,
+        select:focus,
+        textarea:focus {
+            background: rgba(10, 50, 60, 1);
+            border-color: #00ffff;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+        }
+        
+        input::placeholder,
+        textarea::placeholder {
+            color: #007777;
+            opacity: 0.7;
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+            font-family: 'Rajdhani', sans-serif;
+            line-height: 1.6;
+        }
+        
+        select {
+            cursor: pointer;
+        }
+        
+        select option {
+            background: #0a0a0a;
+            color: #00ffff;
+        }
+        
+        /* Submit Button */
+        .submit-button {
+            background: linear-gradient(135deg, #005a5a 0%, #00ffff 100%);
+            border: 3px solid #00ffff;
+            border-radius: 8px;
+            padding: 20px 40px;
+            color: #000;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 40px;
+            display: block;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            letter-spacing: 2px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+        }
+        
+        .submit-button:hover {
+            background: linear-gradient(135deg, #00ffff 0%, #00cccc 100%);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+            transform: translateY(-2px);
+        }
+        
+        .submit-button:active {
+            transform: translateY(0);
+        }
+        
+        /* Confirmation Message */
+        .confirmation-message {
+            background: rgba(0, 255, 0, 0.15);
+            border: 2px solid #00ff00;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+            color: #00ff00;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 16px;
+            display: none;
+        }
+        
+        /* Footer */
+        .page-footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px solid #444;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            font-size: 13px;
+            color: #777;
+        }
+        
+        .footer-item {
+            font-family: 'Share Tech Mono', monospace;
+        }
+        
+        .footer-item strong {
+            color: #999;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .barcode {
+            max-width: 200px;
+            width: 100%;
+            height: auto;
+            margin: 20px 0;
+        }
+        
+        .legal-text {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.8;
+            margin-top: 30px;
+            font-style: italic;
+            text-align: justify;
+        }
+        
+        .legal-text strong {
+            color: #777;
+        }
+        
+        .legal-text p {
+            margin-bottom: 15px;
+        }
+        
+        /* Page Divider */
+        .page-divider {
+            height: 4px;
+            background: linear-gradient(90deg, transparent 0%, #00ffff 50%, transparent 100%);
+            margin: 80px 0;
+            border-radius: 2px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+        }
+        
+        /* Info Boxes */
+        .info-box {
+            padding: 25px;
+            border-radius: 8px;
+            margin: 25px 0;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+        
+        .info-box.cyan {
+            background: rgba(0, 255, 255, 0.1);
+            border-left: 4px solid #00ffff;
+        }
+        
+        .info-box.yellow {
+            background: rgba(255, 255, 0, 0.1);
+            border-left: 4px solid #ffff00;
+        }
+        
+        .info-box.red {
+            background: rgba(255, 51, 51, 0.1);
+            border-left: 4px solid #ff3333;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .content {
+                padding: 40px 50px;
+            }
+            
+            .injection-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .content {
+                padding: 30px 25px;
+            }
+            
+            .main-header h1 {
+                font-size: 32px;
+            }
+            
+            .section-header {
+                font-size: 18px;
+                padding: 20px 25px;
+            }
+            
+            .form-field {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <!-- HEADER -->
+            <div class="main-header">
+                <img src="https://cdn.abacus.ai/images/edb8b32e-07c6-4219-ae9f-4ab272260b97.jpg" alt="Synapse Pharma" class="logo">
+                <h1>PENTANYL©</h1>
+                <div class="subtitle">PROTOCOLE D'ADMINISTRATION</div>
+                <div class="restriction">⚠ Réservé au personnel médical</div>
+            </div>
+            
+            <div class="product-box">
+                <div class="product-item">
+                    <div class="product-label">Forme Galénique</div>
+                    <div class="product-value">Injection IV</div>
+                </div>
+                <div class="product-item">
+                    <div class="product-label">Dosage</div>
+                    <div class="product-value">100 µg</div>
+                </div>
+                <div class="product-item">
+                    <div class="product-label">Classe</div>
+                    <div class="product-value">Opioïde Majeur</div>
+                </div>
+                <div class="product-item">
+                    <div class="product-label">Effet</div>
+                    <div class="product-value">2-5 min</div>
+                </div>
+            </div>
+            
+            <!-- SECTION 1: ÉVALUATION -->
+            <div class="section">
+                <div class="section-header cyan">
+                    🎯 ARBRE DÉCISIONNEL — ÉVALUATION TERRAIN
+                </div>
+                <div class="section-content">
+                    <div class="decision-tree">
+                        <div class="decision-step">
+                            <strong>ÉTAPE 1 : Évaluation de la douleur</strong>
+                            <ul>
+                                <li><strong>Échelle EVA (0-10)</strong> : Demander au patient d'évaluer sa douleur</li>
+                                <li><strong>0-3</strong> : Douleur légère → Antalgiques standards</li>
+                                <li><strong>4-6</strong> : Douleur modérée → Analgésiques de niveau 2</li>
+                                <li><strong>7-10</strong> : Douleur extrême → <span style="color: #00ffff; font-weight: 700;">PENTANYL© INDIQUÉ</span></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="decision-step">
+                            <strong>ÉTAPE 2 : Vérification des contre-indications</strong>
+                            <ul>
+                                <li>❌ Traumatisme crânien ou blessure à la tête</li>
+                                <li>❌ Fréquence respiratoire < 10/min</li>
+                                <li>❌ Patient inconscient (sauf supervision directe)</li>
+                                <li>❌ Allergie connue aux opioïdes</li>
+                                <li>❌ Insuffisance respiratoire ou hépatique sévère</li>
+                            </ul>
+                            <div class="info-box red" style="margin-top: 20px;">
+                                <strong style="color: #ff3333;">⚠ Si UNE SEULE contre-indication → NE PAS ADMINISTRER</strong>
+                            </div>
+                        </div>
+                        
+                        <div class="decision-step">
+                            <strong>ÉTAPE 3 : Décision GO / NO-GO</strong>
+                            <ul>
+                                <li><strong style="color: #00ff00;">✓ GO</strong> : Douleur 7-10/10 + Aucune contre-indication → Procéder à l'administration</li>
+                                <li><strong style="color: #ff3333;">✗ NO-GO</strong> : Contre-indication présente → Utiliser alternatives + Évacuation médicale</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-header cyan">
+                    📋 INDICATIONS CLINIQUES
+                </div>
+                <div class="section-content">
+                    <p style="margin-bottom: 20px; font-size: 17px;"><strong>Pentanyl©</strong> est indiqué pour la gestion de la douleur aiguë lors de :</p>
+                    <ul style="margin-left: 25px; line-height: 2; font-size: 16px;">
+                        <li><strong>Blessures traumatiques lourdes</strong></li>
+                        <li><strong>Traumatismes par balle</strong> ou blessures pénétrantes</li>
+                        <li><strong>Amputations / Démembrements</strong></li>
+                        <li><strong>Brûlures sévères</strong> (>20% surface corporelle)</li>
+                        <li><strong>Fractures ouvertes</strong> ou écrasements</li>
+                        <li><strong>Opérations chirurgicales lourdes</strong> en conditions de terrain</li>
+                    </ul>
+                    
+                    <div class="info-box cyan">
+                        <strong style="color: #00ffff;">⚡ Mécanisme d'action :</strong> Pentanyl© agit sur les récepteurs opioïdes centraux, induisant une analgésie profonde, une sédation rapide et un détachement émotionnel marqué. 
+                        <br>Effet en 2-5 minutes (injection IV), persistant 2-4 heures.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PAGE DIVIDER -->
+            <div class="page-divider"></div>
+            
+            <!-- SECTION 2: ADMINISTRATION -->
+            <div class="section">
+                <div class="section-header cyan">
+                    🔧 PRÉPARATION DU KIT
+                </div>
+                <div class="section-content">
+                    <ul class="checklist">
+                        <li>Vérifier l'intégrité de l'auto-injecteur (pas de fissures, capuchon intact)</li>
+                        <li>Contrôle visuel de l'ampoule : liquide clair, sans particules en suspension</li>
+                        <li>Vérifier la date de péremption et le numéro de lot</li>
+                        <li>Désinfecter la zone d'injection (alcool 70° ou équivalent)</li>
+                        <li>Préparer le kit de surveillance : chronomètre, fiche de traçabilité</li>
+                        <li>Localiser l'antagoniste (Zaloxone ou équivalent) dans le kit médical d'urgence</li>
+                    </ul>
+                    
+                    <div class="info-box yellow">
+                        <strong style="color: #ffff00;">⚠ IMPORTANT :</strong> Ne jamais utiliser un auto-injecteur endommagé ou dont le liquide est trouble/coloré. En cas de doute, utiliser une unité de secours.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-header cyan">
+                    💉 PROCÉDURE D'INJECTION
+                </div>
+                <div class="section-content">
+                    <div class="injection-grid">
+                        <div class="injection-method">
+                            <h4>🔴 AUTO-INJECTION (Medic blessé)</h4>
+                            <ol>
+                                <li><strong>Retirer le capuchon de sécurité</strong> (tourner et tirer)</li>
+                                <li><strong>Identifier la zone :</strong> Tiers moyen de la cuisse externe ou bras (éviter l'intérieur)</li>
+                                <li><strong>Éviter :</strong> Artères fémorales, nerfs, zones de blessure</li>
+                                <li><strong>Placer perpendiculairement</strong> (90°) contre le muscle</li>
+                                <li><strong>Presser fermement</strong> jusqu'au clic audible</li>
+                                <li><strong>Maintenir 5 secondes</strong> (compter mentalement)</li>
+                                <li><strong>Retirer et masser</strong> légèrement la zone</li>
+                                <li><strong>Sécuriser l'injecteur usagé</strong> (ne pas recapuchonner)</li>
+                            </ol>
+                            
+                            <div class="injection-note">
+                                ⚠ Peut être administré à travers un uniforme léger en situation d'urgence extrême
+                            </div>
+                        </div>
+                        
+                        <div class="injection-method">
+                            <h4>🔵 INJECTION SUR CAMARADE</h4>
+                            <ol>
+                                <li><strong>Immobiliser le patient</strong> si agité (aide d'un tiers si possible)</li>
+                                <li><strong>Retirer le capuchon de sécurité</strong> (tourner et tirer)</li>
+                                <li><strong>Identifier la zone :</strong> Tiers moyen de la cuisse externe ou bras (éviter l'intérieur)</li>
+                                <li><strong>Éviter :</strong> Artères fémorales, nerfs, zones de blessure</li>
+                                <li><strong>Placer perpendiculairement</strong> (90°) contre le muscle</li>
+                                <li><strong>Presser fermement</strong> jusqu'au clic audible</li>
+                                <li><strong>Maintenir 5 secondes</strong> (compter mentalement)</li>
+                                <li><strong>Retirer et masser</strong> légèrement la zone</li>
+                                <li><strong>Retirer et surveiller</strong> immédiatement les signes vitaux</li>
+                            </ol>
+                            
+                            <div class="injection-note">
+                                ⚠ Rassurer le patient : "Vous allez ressentir un flottement. Détendez-vous. Vous êtes pris en charge et en sécurité."
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 40px; text-align: center;">
+                        <div style="display: inline-block; padding: 30px; background: rgba(0, 255, 255, 0.12); border: 3px solid #00ffff; border-radius: 10px;">
+                            <strong style="color: #00ffff; font-size: 20px;">ZONE D'INJECTION RECOMMANDÉE</strong><br>
+                            <span style="font-size: 16px; color: #ddd;">Tiers moyen de la cuisse externe (muscle vaste externe) ou bras si accessible</span><br>
+                            <span style="font-size: 14px; color: #999;">Éviter : intérieur de la cuisse, zones de blessure, artères palpables</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-header yellow">
+                    🧬 POSOLOGIE AJUSTÉE SELON LA RACE
+                </div>
+                <div class="section-content">
+                    <table class="dosage-table">
+                        <thead>
+                            <tr>
+                                <th>Race</th>
+                                <th>Ajustement Posologie</th>
+                                <th>Observations</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Humains</strong></td>
+                                <td style="color: #00ffff;">100 µg (standard)</td>
+                                <td>Réponse standard, ajuster selon réponse morphologique</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Orcs</strong></td>
+                                <td style="color: #ffaa00;">+25% (125 µg)</td>
+                                <td>Métabolisme rapide, faible sensibilité nerveuse</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Trolls</strong></td>
+                                <td style="color: #ffaa00;">+20% (120 µg)</td>
+                                <td>Tolérance élevée, peau épaisse</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Elfes</strong></td>
+                                <td style="color: #ff6666;">-20% (80 µg)</td>
+                                <td>Sensibilité accrue, risque dépression respiratoire majoré</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Nains</strong></td>
+                                <td style="color: #ff6666;">-20% (80 µg)</td>
+                                <td>Métabolisme lent, effet prolongé (jusqu'à 5h)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Gobelins</strong></td>
+                                <td style="color: #00ffff;">100 µg (standard)</td>
+                                <td>Métabolisme acide, surveiller troubles digestifs / nauséeux</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Kobolds</strong></td>
+                                <td style="color: #ffaa00;">Adapter selon morphologie</td>
+                                <td>Corpulence frêle, durée d'action réduite (50%)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Vautours</strong></td>
+                                <td style="color: #ffaa00;">+25% (125 µg)</td>
+                                <td>Métabolisme accéléré, effet éphémère (1h30)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Gnolls</strong></td>
+                                <td style="color: #ff3333;">100 µg + surveillance renforcée</td>
+                                <td>Risque agitation paradoxale, toxicité accrue</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Androïdes</strong></td>
+                                <td style="color: #00ffff;">100 µg (standard)</td>
+                                <td>Surveillance selon type de châssis et configuration</td>
+                            </tr>
+                                                        <tr>
+                                <td><strong>Outriliens</strong></td>
+                                <td style="color: #00ffff;">100 µg (standard)</td>
+                                <td>----------</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="info-box red">
+                        <strong style="color: #ff3333;">⚠ ATTENTION :</strong> En cas de doute sur la race ou la morphologie, utiliser la posologie standard (100 µg) et surveiller étroitement. Ne jamais dépasser 150 µg en première administration.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PAGE DIVIDER -->
+            <div class="page-divider"></div>
+            
+            <!-- SECTION 3: SURVEILLANCE & URGENCES -->
+            <div class="section">
+                <div class="section-header cyan">
+                    ⏱️ SURVEILLANCE POST-INJECTION
+                </div>
+                <div class="section-content">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-marker">T+2</div>
+                            <div class="timeline-label">2 min</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker">T+30</div>
+                            <div class="timeline-label">30 min</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker">T+60</div>
+                            <div class="timeline-label">60 min</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker">T+120</div>
+                            <div class="timeline-label">120 min</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker">...</div>
+                            <div class="timeline-label">Puis /120 min</div>
+                        </div>
+                    </div>
+                    
+                    <p style="margin: 30px 0; font-size: 17px;"><strong>Signes vitaux à surveiller à chaque point de contrôle :</strong></p>
+                    
+                    <table class="surveillance-table">
+                        <thead>
+                            <tr>
+                                <th>Paramètre</th>
+                                <th>Valeur Normale</th>
+                                <th>Seuil d'Alerte</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Fréquence respiratoire</strong></td>
+                                <td>12-20 /min</td>
+                                <td style="color: #ff3333;">&lt; 10 /min</td>
+                                <td>Zaloxone immédiat</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Pouls</strong></td>
+                                <td>60-100 bpm</td>
+                                <td style="color: #ff3333;">&lt; 50 bpm</td>
+                                <td>Surveillance renforcée</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Niveau de conscience</strong></td>
+                                <td>Alerte, réactif</td>
+                                <td style="color: #ff3333;">Confusion sévère</td>
+                                <td>Évaluation neurologique</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Coloration de la peau</strong></td>
+                                <td>Normale</td>
+                                <td style="color: #ff3333;">Cyanose (lèvres bleues)</td>
+                                <td>Assistance respiratoire</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Douleur (EVA)</strong></td>
+                                <td>0-3 /10</td>
+                                <td style="color: #ffaa00;">&gt; 5 /10</td>
+                                <td>Réévaluation analgésie</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="info-box cyan">
+                        <strong style="color: #00ffff;">📝 TRAÇABILITÉ :</strong> Noter tous les contrôles sur la fiche de surveillance. En cas d'évacuation, transmettre la fiche complète à l'équipe médicale.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="warning-box">
+                <h4>🚨 SIGNES DE SURDOSAGE — URGENCE VITALE</h4>
+                <ul style="line-height: 2;">
+                    <li><strong>Dépression respiratoire sévère</strong> : Respiration &lt; 10/min ou irrégulière</li>
+                    <li><strong>Cyanose</strong> : Lèvres, ongles ou peau bleutés (hypoxie)</li>
+                    <li><strong>Confusion sévère</strong> ou désorientation complète</li>
+                    <li><strong>Perte de conscience</strong> : Patient non réveillable</li>
+                    <li><strong>Bradycardie</strong> : Pouls &lt; 50 bpm</li>
+                    <li><strong>Hypotension sévère</strong> : Tension artérielle effondrée</li>
+                </ul>
+                
+                <div class="action">
+                    <strong style="color: #ff3333; font-size: 20px;">⚡ CONDUITE À TENIR IMMÉDIATE :</strong>
+                    <ol style="margin: 20px 0 0 25px; line-height: 2; font-size: 16px;">
+                        <li><strong>Administration de Zaloxone</strong> (antagoniste opioïde) : 0.4 mg IV ou IM</li>
+                        <li><strong>Assistance respiratoire</strong> : Ventilation au masque si nécessaire</li>
+                        <li><strong>Position latérale de sécurité</strong> si inconscient</li>
+                        <li><strong>Appel évacuation d'urgence</strong> : Code RED-MED</li>
+                        <li><strong>Surveillance continue</strong> : Signes vitaux toutes les 2 minutes</li>
+                    </ol>
+                </div>
+                
+                <div class="info-box yellow" style="margin-top: 20px;">
+                    <strong style="color: #ffff00;">📍 LOCALISATION ZALOXONE :</strong> Kit médical d'urgence, compartiment rouge, ampoules 0.4 mg. Vérifier disponibilité AVANT toute administration de Pentanyl©.
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-header yellow">
+                    ⚠️ EFFETS SECONDAIRES COURANTS (Normaux)
+                </div>
+                <div class="section-content">
+                    <p style="margin-bottom: 20px; font-size: 17px;">Les effets suivants sont <strong>attendus et normaux</strong> après administration de Pentanyl© :</p>
+                    
+                    <ul style="margin-left: 25px; line-height: 2; font-size: 16px;">
+                        <li><strong>Somnolence marquée</strong> : Le patient peut somnoler, c'est normal</li>
+                        <li><strong>Ralentissement psychomoteur</strong> : Réactions lentes, élocution ralentie</li>
+                        <li><strong>Nausées légères</strong> : Peuvent survenir dans les 15 premières minutes</li>
+                        <li><strong>Hypotension légère</strong> : Baisse modérée de la tension (10-15 mmHg)</li>
+                        <li><strong>Détachement émotionnel</strong> : Le patient semble "ailleurs", c'est l'effet recherché</li>
+                    </ul>
+                    
+                    <div class="info-box cyan">
+                        <strong style="color: #00ffff;">💬 RASSURER LE PATIENT :</strong> "C'est normal de vous sentir somnolent et détaché. Le médicament agit pour soulager votre douleur. Vous êtes en sécurité, je vous surveille."
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PAGE DIVIDER -->
+            <div class="page-divider"></div>
+            
+            <!-- SECTION 4: TRAÇABILITÉ & MENTIONS LÉGALES -->
+            <div class="section">
+                <div class="section-header cyan">
+                    📋 FORMULAIRE DE SIGNALEMENT OBLIGATOIRE
+                </div>
+                <div class="section-content">
+                    <p style="margin-bottom: 30px; color: #ff6666; font-size: 17px;"><strong>⚠ À remplir IMMÉDIATEMENT après administration et transmettre dans les 30 minutes</strong></p>
+                    
+                    <form id="pentanylForm">
+                        <div class="form-field">
+                            <div class="form-label">Date / Heure :</div>
+                            <div>
+                                <input type="datetime-local" id="dateHeure" name="dateHeure" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-field">
+                            <div class="form-label">Nom du patient :</div>
+                            <div>
+                                <input type="text" id="nomPatient" name="nomPatient" placeholder="Nom complet du patient" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-field">
+                            <div class="form-label">Matricule / APM patient :</div>
+                            <div>
+                                <input type="text" id="matriculePatient" name="matriculePatient" placeholder="Ex: MIL-2025-12345" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-field">
+                            <div class="form-label">Race :</div>
+                            <div>
+                                <select id="race" name="race" required>
+                                    <option value="">-- Sélectionner une race --</option>
+                                    <option value="Humain">Humain</option>
+                                    <option value="Orc">Orc</option>
+                                    <option value="Troll">Troll</option>
+                                    <option value="Elfe">Elfe</option>
+                                    <option value="Nain">Nain</option>
+                                    <option value="Gobelin">Gobelin</option>
+                                    <option value="Kobold">Kobold</option>
+                                    <option value="Vautour">Vautour</option>
+                                    <option value="Gnoll">Gnoll</option>
+                                    <option value="Androïde">Androïde</option>
+                                    <option value="Androïde">Outrilien</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-field">
+                            <div class="form-label">Type de blessure :</div>
+                            <div>
+                                <input type="text" id="typeBlessure" name="typeBlessure" placeholder="Ex: Blessure par balle, fracture ouverte, brûlure..." required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-field">
+                            <div class="form-label">Douleur initiale (EVA) :</div>
+                            <div>
+                                <input type="number" id="douleurEVA" name="douleurEVA" min="0" max="10" placeholder="0-10" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-field">
+                            <div class="form-label">Dose administrée :</div>
+                            <div>
+                                <input type="number" id="dose" name="dose" placeholder="Dose en µg (ex: 100)" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-field">
+                            <div class="form-label">Numéro de lot :</div>
+                            <div>
+                                <input type="text" id="numeroLot" name="numeroLot" placeholder="PTN-2025-XXXXXXXXX" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-field">
+                            <div class="form-label">Nom du medic :</div>
+                            <div>
+                                <input type="text" id="nomMedic" name="nomMedic" placeholder="Votre nom complet" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-field">
+                            <div class="form-label">Matricule / APM medic :</div>
+                            <div>
+                                <input type="text" id="matriculeMedic" name="matriculeMedic" placeholder="Ex: MEDIC-2025-6789" required>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 30px;">
+                            <div class="form-label" style="margin-bottom: 15px;">Signes vitaux observés :</div>
+                            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                                <div>
+                                    <label style="color: #999; font-size: 14px; display: block; margin-bottom: 8px;">Respiration (/min)</label>
+                                    <input type="number" id="respiration" name="respiration" placeholder="12-20" required>
+                                </div>
+                                <div>
+                                    <label style="color: #999; font-size: 14px; display: block; margin-bottom: 8px;">Pouls (bpm)</label>
+                                    <input type="number" id="pouls" name="pouls" placeholder="60-100" required>
+                                </div>
+                                <div>
+                                    <label style="color: #999; font-size: 14px; display: block; margin-bottom: 8px;">Niveau de conscience</label>
+                                    <select id="conscience" name="conscience" required>
+                                        <option value="">-- Sélectionner --</option>
+                                        <option value="Alerte et réactif">Alerte et réactif</option>
+                                        <option value="Somnolent mais réveillable">Somnolent mais réveillable</option>
+                                        <option value="Confusion légère">Confusion légère</option>
+                                        <option value="Confusion sévère">Confusion sévère</option>
+                                        <option value="Inconscient">Inconscient</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 30px;">
+                            <div class="form-label" style="margin-bottom: 15px;">Observations post-injection (T+5min, T+15min) :</div>
+                            <div>
+                                <textarea id="observations" name="observations" placeholder="Décrire l'évolution de l'état du patient, réduction de la douleur, effets observés..." required></textarea>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 30px;">
+                            <div class="form-label" style="margin-bottom: 15px;">Complications éventuelles :</div>
+                            <div>
+                                <textarea id="complications" name="complications" placeholder="Indiquer tout effet indésirable, complication, ou 'Aucune' si RAS"></textarea>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="submit-button">📡 GENERER LE RAPPORT</button>
+                        
+                        <div id="confirmationMessage" class="confirmation-message">
+                            ✓ RAPPORT GÉNÉRÉ ET TÉLÉCHARGÉ AVEC SUCCÈS
+                        </div>
+                    </form>
+                    
+                    <div class="info-box yellow" style="margin-top: 30px;">
+                        <strong style="color: #ffff00;">📡 TRANSMISSION :</strong> Après avoir cliqué sur "Générer le rapport", un fichier texte sera généré et téléchargé automatiquement. 
+                        Transmettez-le par communicateur ou enrefistrer le sur EM après l'administration.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-header red">
+                    ⚖️ MENTIONS LÉGALES
+                </div>
+                <div class="section-content">
+                    <div class="legal-text">
+                        <p>
+                            <strong>Kessler Industries</strong> et sa filiale <strong>SYNAPSE Pharma</strong> déclinent toute responsabilité en cas d'usage inapproprié, détourné, récréatif, accidentel, volontaire, involontaire, ou simplement malchanceux de <strong>Pentanyl©</strong>, y compris mais sans s'y limiter : surdosage, mésusage, interactions imprévues, effets secondaires non listés, conséquences existentielles imprévues, dépendance, ou décès.
+                        </p>
+                        
+                        <p>
+                            L'utilisateur reconnaît expressément que toute administration de <strong>Pentanyl©</strong> relève de sa seule responsabilité professionnelle, de son jugement clinique, ou de la négligence de sa formation, et renonce à toute action, plainte, réclamation, ou demande de compensation à l'encontre de <strong>Kessler Industries</strong>, <strong>SYNAPSE Pharma</strong>, ou de toute filiale, partenaire, actionnaire, sous-traitant, ou IA associée.
+                        </p>
+                        
+                        <p>
+                            En cas d'effets indésirables, l'utilisateur est invité à consulter un professionnel de santé qualifié, un avocat spécialisé en responsabilité médicale, ou à méditer sur ses choix de carrière. <strong>SYNAPSE Pharma</strong> ne propose ni assistance psychologique, ni remboursement, ni soutien émotionnel.
+                        </p>
+                        
+                        <p>
+                            Toute tentative de reproduction, de revente, de partage, d'auto-expérimentation, ou d'usage récréatif de <strong>Pentanyl©</strong> engage la seule responsabilité de l'utilisateur, de ses héritiers, de ses supérieurs hiérarchiques, et de toute personne ayant eu la mauvaise idée de l'imiter ou de fermer les yeux.
+                        </p>
+                        
+                        <p>
+                            <strong>En utilisant ce produit, vous reconnaissez avoir lu, compris, accepté, et intégré les mentions légales ci-dessus.</strong> Vous reconnaissez également que personne ne lit jamais ces mentions, mais qu'elles nous protègent juridiquement quand même.
+                        </p>
+                        
+                        <p style="margin-top: 30px; text-align: center; color: #777; font-size: 12px;">
+                            <strong>SYNAPSE Pharma</strong> — Une filiale Kessler Industries<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+                       
+            <div class="page-footer">
+                <div class="footer-item">
+                    <strong>DOCUMENT</strong>
+                    FICHE-MEDIC-PTN
+                </div>
+                <div class="footer-item">
+                    <strong>VERSION</strong>
+                    v1.0-MIL
+                </div>
+                <div class="footer-item">
+                    <strong>DATE</strong>
+                    1/381.4 221125
+                </div>
+                <div class="footer-item">
+                    <strong>PAGE</strong>
+                    1/1 (Fullscreen)
+                </div>
+            </div>
+            
+            <div style="margin-top: 40px; text-align: center;">
+                <img src="https://cdn.abacus.ai/images/edb8b32e-07c6-4219-ae9f-4ab272260b97.jpg" alt="Synapse Pharma" style="max-width: 300px; opacity: 0.3;">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('pentanylForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Récupération des données du formulaire
+            const dateHeure = document.getElementById('dateHeure').value;
+            const nomPatient = document.getElementById('nomPatient').value;
+            const matriculePatient = document.getElementById('matriculePatient').value;
+            const race = document.getElementById('race').value;
+            const typeBlessure = document.getElementById('typeBlessure').value;
+            const douleurEVA = document.getElementById('douleurEVA').value;
+            const dose = document.getElementById('dose').value;
+            const numeroLot = document.getElementById('numeroLot').value;
+            const nomMedic = document.getElementById('nomMedic').value;
+            const matriculeMedic = document.getElementById('matriculeMedic').value;
+            const respiration = document.getElementById('respiration').value;
+            const pouls = document.getElementById('pouls').value;
+            const conscience = document.getElementById('conscience').value;
+            const observations = document.getElementById('observations').value;
+            const complications = document.getElementById('complications').value || 'Aucune complication signalée';
+            
+            // Formatage de la date/heure pour le rapport
+            const dateObj = new Date(dateHeure);
+            const dateFormatted = dateObj.toLocaleString('fr-FR', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            
+            // Date/heure de génération du rapport
+            const now = new Date();
+            const generationDate = now.toLocaleString('fr-FR', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            
+            // Génération du contenu du fichier texte
+            const reportContent = `════════════════════════════════════════════════════════════
+    RAPPORT D'ADMINISTRATION PENTANYL©
+    SYNAPSE PHARMA - Kessler Industries Company
+    Usage Militaire Exclusif
+════════════════════════════════════════════════════════════
+
+📅 DATE/HEURE D'ADMINISTRATION : ${dateFormatted}
+
+🏥 INFORMATIONS PATIENT
+   • Nom : ${nomPatient}
+   • Matricule : ${matriculePatient}
+   • Race : ${race}
+   • Type de blessure : ${typeBlessure}
+   • Douleur initiale (EVA) : ${douleurEVA}/10
+
+💉 ADMINISTRATION
+   • Dose administrée : ${dose} µg
+   • Numéro de lot : ${numeroLot}
+   • Medic responsable : ${nomMedic}
+   • Matricule medic : ${matriculeMedic}
+
+📊 SIGNES VITAUX OBSERVÉS
+   • Respiration : ${respiration} /min
+   • Pouls : ${pouls} bpm
+   • Niveau de conscience : ${conscience}
+
+📝 OBSERVATIONS POST-INJECTION
+${observations}
+
+⚠️ COMPLICATIONS ÉVENTUELLES
+${complications}
+
+════════════════════════════════════════════════════════════
+Rapport généré le ${generationDate}
+Synapse Pharma décline toute responsabilité en cas de mésusage.
+════════════════════════════════════════════════════════════
+
+[FIN DU RAPPORT - TRANSMETTRE PAR CANAL MED-7]`;
+
+            // Création du blob et téléchargement
+            const blob = new Blob([reportContent], { type: 'text/plain;charset=utf-8' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            
+            // Nom du fichier avec date/heure
+            const filename = `rapport_pentanyl_${now.getFullYear()}${String(now.getMonth()+1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}_${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}.txt`;
+            
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            
+            // Nettoyage
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+            
+            // Affichage du message de confirmation
+            const confirmationMsg = document.getElementById('confirmationMessage');
+            confirmationMsg.style.display = 'block';
+            
+            // Masquer le message après 5 secondes
+            setTimeout(function() {
+                confirmationMsg.style.display = 'none';
+            }, 5000);
+        });
+        
+        // Initialisation du champ date/heure avec la date actuelle
+        window.addEventListener('DOMContentLoaded', function() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            
+            const datetimeLocal = `${year}-${month}-${day}T${hours}:${minutes}`;
+            document.getElementById('dateHeure').value = datetimeLocal;
+        });
+    </script>
+</body>
+</html>
