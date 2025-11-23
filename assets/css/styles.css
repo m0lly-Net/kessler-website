@@ -2,6 +2,24 @@
 /* Import Orbitron and Rajdhani fonts */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap');
 
+/* CURSEURS */
+
+/* Curseur par défaut */
+body {
+    cursor: url('../cursors/arrow.cur'), auto;
+}
+
+/* Tous les éléments interactifs (qui changeraient normalement en "pointer") */
+a, button, .contact-btn:hover {
+    cursor: url('../cursors/link.cur'), pointer;
+}
+
+/* Pour les champs de texte */
+input[type="text"], input[type="email"], input[type="password"], 
+textarea, [contenteditable="true"] {
+    cursor: url('../cursors/pen.cur'), text;
+}
+
 /* Color Palette & global sizes */
 :root {
   --primary-dark: #0a0a0a;
@@ -240,11 +258,11 @@ body::before {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
-.stat-box:hover {
+/* .stat-box:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 30px rgba(0, 212, 255, 0.2);
   border-color: var(--cyber-cyan);
-}
+} */
 
 .stat-number {
   display: block;
@@ -364,6 +382,44 @@ body::before {
 }
 
 /* Cards */
+
+/* CARTES STATIQUES */
+.static-cyber-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--border-cyber);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  height: 100%;
+}
+
+.static-cyber-card .card-header {
+  background: rgba(0, 212, 255, 0.1);
+  border-bottom: 1px solid var(--border-cyber);
+}
+
+.static-cyber-card .card-header-title {
+  color: var(--text-primary);
+  font-family: 'Orbitron', monospace;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.static-cyber-card .card-content {
+  background: transparent;
+}
+
+.static-cyber-card .title {
+  margin-bottom: 1rem;
+}
+
+.static-cyber-card p {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+/* CARTES DYNAMIQUES */
 .cyber-card {
   background: var(--glass-bg);
   border: 1px solid var(--border-cyber);
@@ -516,12 +572,13 @@ body::before {
   align-items: center;
   gap: 1rem;
   transition: transform 0.3s ease, border-color 0.3s ease;
+  border-color: var(--cyber-cyan);
 }
 
-.stat-card:hover {
+/* .stat-card:hover {
   border-color: var(--cyber-cyan);
   transform: translateY(-2px);
-}
+} */
 
 .stat-icon {
   font-size: 2rem;
